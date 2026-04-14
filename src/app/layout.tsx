@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SiteNav } from '@/components/site-nav';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        <SiteNav />
+        {children}
+      </body>
     </html>
   );
 }
