@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen">
         <Header />
-        <main className="min-h-screen px-6 py-16">{children}</main>
+        <main className="px-6 py-16">{children}</main>
       </body>
     </html>
   );
