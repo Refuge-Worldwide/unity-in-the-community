@@ -6,6 +6,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Unity in the Community',
   description: 'A non-profit organization by Refuge Worldwide', // todo: TBD
+  icons: {
+    icon: '/UNITY IN THE COMMUNITY.svg',
+  },
 };
 
 export default function RootLayout({
