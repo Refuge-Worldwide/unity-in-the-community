@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen">
-        <div className="fixed top-0 left-0 right-0 z-50 h-[var(--header-height)]">
+        <div className="fixed top-0 left-0 right-0 z-50 h-[var(--header-height)] site-container">
           <Header />
         </div>
         <div
@@ -28,7 +28,9 @@ export default function RootLayout({
           }}
         >
           <main className="site-container flex-1 py-16">{children}</main>
-          <Footer />
+          <div className="site-container py-4">
+            <Footer />
+          </div>
         </div>
       </body>
     </html>

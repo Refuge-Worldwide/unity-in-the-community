@@ -29,7 +29,7 @@ export function Header() {
 
   return (
     <header className="h-full">
-      <nav className="site-container flex h-full items-center justify-between">
+      <nav className="flex h-full items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
             src="/UNITY IN THE COMMUNITY.svg"
