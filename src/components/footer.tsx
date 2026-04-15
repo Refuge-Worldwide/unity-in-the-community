@@ -7,7 +7,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="px-6 py-3">
+    <footer className="site-container py-4">
       <div className="mx-auto flex w-full flex-wrap justify-center gap-6 text-xs text-muted-foreground">
         {footerLinks.map((link) => (
           <Link key={link.href} href={link.href}>

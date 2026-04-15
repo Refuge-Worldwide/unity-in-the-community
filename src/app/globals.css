@@ -114,13 +114,14 @@
   }
   html {
     @apply font-sans font-light antialiased;
+    scrollbar-gutter: stable both-edges;
   }
   h1,
   h2 {
     @apply font-heading;
   }
   h1 {
-    @apply text-4xl leading-tight md:text-6xl;
+    @apply text-4xl leading-tight md:text-6xl mb-4;
   }
   h2 {
     @apply text-xl leading-tight md:text-2xl;
@@ -140,6 +141,10 @@
 }
 
 @layer utilities {
+  .site-container {
+    @apply w-full px-3 md:px-4;
+  }
+
   .type-h1 {
     @apply font-heading text-4xl leading-tight md:text-6xl;
   }
