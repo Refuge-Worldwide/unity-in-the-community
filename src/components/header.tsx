@@ -57,7 +57,7 @@ export function Header() {
             render={
               <Button
                 variant="ghost"
-                size="icon-xl"
+                size="icon-lg"
                 className="ml-auto md:hidden"
                 aria-label="Open navigation menu"
               />

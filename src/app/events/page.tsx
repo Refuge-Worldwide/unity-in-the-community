@@ -2,7 +2,10 @@ import { faker } from '@faker-js/faker';
 
 const events = Array.from({ length: 5 }).map(() => ({
   name: faker.lorem.words(3),
-  date: faker.date.future({ days: 60 }),
+  date: faker.date.between({
+    from: new Date(),
+    to: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+  }),
   location: faker.location.city(),
   description: faker.lorem.sentence(),
 }));
