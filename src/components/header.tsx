@@ -79,7 +79,7 @@ export function Header() {
           <SheetTrigger
             render={
               <Button
-                variant="ghost"
+                variant="ghost-bare"
                 size="icon-lg"
                 className="ml-auto size-12 items-start justify-end md:hidden"
                 aria-label="Open navigation menu"
