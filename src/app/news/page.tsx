@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-const newsItems = Array.from({ length: 3 }).map(() => ({
+const newsItems = Array.from({ length: 7 }).map(() => ({
   title: faker.lorem.sentence(),
   date: faker.date.recent({ days: 30 }),
   content: faker.lorem.paragraphs(2),

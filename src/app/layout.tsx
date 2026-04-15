@@ -15,10 +15,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col">
-        <Header />
-        <main className="site-container flex-1 py-16">{children}</main>
-        <Footer />
+      <body className="flex min-h-screen">
+        <div className="fixed top-0 left-0 right-0 z-50 h-[var(--header-height)]">
+          <Header />
+        </div>
+        <div
+          className="fixed flex h-screen w-full flex-col overflow-scroll pt-[var(--header-height)]"
+          style={{
+            maskImage: 'linear-gradient(to bottom, transparent 0, black var(--header-height))',
+            WebkitMaskImage:
+              'linear-gradient(to bottom, transparent 0, black var(--header-height))',
+          }}
+        >
+          <main className="site-container flex-1 py-16">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

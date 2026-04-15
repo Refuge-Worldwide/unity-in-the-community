@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { MenuIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -28,8 +28,8 @@ export function Header() {
   };
 
   return (
-    <header>
-      <nav className="site-container flex items-center justify-between py-3 md:py-4">
+    <header className="h-full">
+      <nav className="site-container flex h-full items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
             src="/UNITY IN THE COMMUNITY.svg"
@@ -40,7 +40,7 @@ export function Header() {
           />
         </Link>
 
-        <div className="type-h2 ml-auto hidden flex-wrap gap-4 uppercase md:flex">
+        <div className="type-h2 ml-auto hidden h-full flex-wrap items-center gap-4 uppercase md:flex">
           {links.map((link) => (
             <Link
               key={link.href}

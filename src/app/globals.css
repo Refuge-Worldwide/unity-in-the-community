@@ -70,6 +70,7 @@
 :root {
   --font-sans: 'Visuelt', sans-serif; /* Visuelt for body */
   --font-heading: 'BootzyTM', sans-serif; /* BootzyTM for headers */
+  --header-height: 3.5rem;
 
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -103,6 +104,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --header-height: 4.5rem;
+  }
 }
 
 @layer base {
