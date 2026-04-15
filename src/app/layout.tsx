@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {BACKGROUND_IMAGES.map((href) => (
-          <link key={href} rel="preload" as="image" href={href} type="image/svg+xml" />
+          <link key={href} rel="preload" as="image" href={href} />
         ))}
       </head>
       <body className="relative isolate flex min-h-dvh bg-background">
