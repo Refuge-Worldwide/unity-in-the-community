@@ -90,7 +90,7 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="right" className="w-[80vw] max-w-xs">
             <SheetHeader></SheetHeader>
-            <div className="type-h2 flex flex-col gap-4 px-4 pb-6 uppercase">
+            <div className="type-h1 text-lg flex flex-col gap-4 px-4 pb-6">
               {links.map((link) => (
                 <Link
                   key={link.href}
