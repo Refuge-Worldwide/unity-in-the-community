@@ -81,12 +81,12 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon-lg"
-                className="ml-auto md:hidden"
+                className="ml-auto size-12 items-start justify-end md:hidden"
                 aria-label="Open navigation menu"
               />
             }
           >
-            <MenuIcon className="size-5" />
+            <MenuIcon className="size-6" />
           </SheetTrigger>
           <SheetContent side="right" className="w-[80vw] max-w-xs">
             <SheetHeader></SheetHeader>
