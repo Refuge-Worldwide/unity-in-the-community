@@ -5,6 +5,15 @@ import { RouteBackground } from '@/components/route-background';
 import { RouteContentTransition } from '@/components/route-content-transition';
 import './globals.css';
 
+const BACKGROUND_IMAGES = [
+  '/backgrounds/home.svg',
+  '/backgrounds/about.svg',
+  '/backgrounds/events.svg',
+  '/backgrounds/news.svg',
+  '/backgrounds/projects.svg',
+  '/backgrounds/default.svg',
+];
+
 export const metadata: Metadata = {
   title: 'Unity in the Community',
   description: 'A non-profit organization by Refuge Worldwide', // todo: TBD
@@ -20,6 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {BACKGROUND_IMAGES.map((href) => (
+          <link key={href} rel="preload" as="image" href={href} type="image/svg+xml" />
+        ))}
+      </head>
       <body className="relative isolate flex min-h-dvh bg-background">
         <RouteBackground />
         <div
