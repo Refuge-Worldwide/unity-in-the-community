@@ -16,6 +16,28 @@ const links = [
   { href: '/about', label: 'About' },
 ];
 
+function getNavIndex(path: string): number {
+  const index = links.findIndex((link) => {
+    if (link.href === '/') {
+      return path === '/';
+    }
+    return path.startsWith(link.href);
+  });
+
+  return index;
+}
+
+function getTransitionTypes(currentPath: string, targetHref: string): string[] | undefined {
+  const currentIndex = getNavIndex(currentPath);
+  const targetIndex = getNavIndex(targetHref);
+
+  if (currentIndex === -1 || targetIndex === -1 || currentIndex === targetIndex) {
+    return undefined;
+  }
+
+  return [targetIndex > currentIndex ? 'nav-forward' : 'nav-back'];
+}
+
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -29,22 +51,23 @@ export function Header() {
 
   return (
     <header className="h-full">
-      <nav className="flex h-full items-center justify-between">
-        <Link href="/" className="flex items-center">
+      <nav className="flex h-full items-start justify-between">
+        <Link href="/">
           <Image
             src="/UNITY IN THE COMMUNITY.svg"
             alt="Logo"
-            width={32}
-            height={32}
+            width={2993}
+            height={905}
             className="h-8 w-auto md:h-10"
           />
         </Link>
 
-        <div className="type-h2 ml-auto hidden h-full flex-wrap items-center gap-4 uppercase md:flex">
+        <div className="type-h2 ml-auto hidden h-full flex-wrap gap-4 uppercase md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
+              transitionTypes={getTransitionTypes(pathname, link.href)}
               className={isActive(link.href) ? 'text-accent' : ''}
             >
               {link.label}
@@ -72,6 +95,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  transitionTypes={getTransitionTypes(pathname, link.href)}
                   onClick={() => setOpen(false)}
                   className={isActive(link.href) ? 'text-accent' : ''}
                 >

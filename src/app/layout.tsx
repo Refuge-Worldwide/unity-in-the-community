@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { RouteBackground } from '@/components/route-background';
+import { RouteContentTransition } from '@/components/route-content-transition';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -18,22 +20,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen">
-        <div className="fixed top-0 left-0 right-0 z-50 h-[var(--header-height)] site-container">
+      <body className="relative isolate flex min-h-dvh bg-background">
+        <RouteBackground />
+        <div
+          className="fixed top-0 left-0 right-0 z-50 h-[var(--header-height)] site-container py-4"
+          style={{ viewTransitionName: 'site-header' }}
+        >
           <Header />
         </div>
         <div
-          className="fixed flex h-screen w-full flex-col overflow-scroll pt-[var(--header-height)]"
+          className="site-container subtle-scrollbar fixed z-10 flex h-dvh w-full flex-col overflow-y-auto overflow-x-hidden pt-[var(--header-height)]"
           style={{
             maskImage: 'linear-gradient(to bottom, transparent 0, black var(--header-height))',
             WebkitMaskImage:
               'linear-gradient(to bottom, transparent 0, black var(--header-height))',
           }}
         >
-          <main className="site-container flex-1 py-16">{children}</main>
-          <div className="site-container py-4">
-            <Footer />
-          </div>
+          <RouteContentTransition>
+            <main className="flex-1 py-16">{children}</main>
+            <div className="py-4">
+              <Footer />
+            </div>
+          </RouteContentTransition>
         </div>
       </body>
     </html>
