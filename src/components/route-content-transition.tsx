@@ -10,7 +10,7 @@ type RouteContentTransitionProps = {
 
 export function RouteContentTransition({ children }: RouteContentTransitionProps) {
   const pathname = usePathname();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     const mdBreakpoint =
@@ -27,7 +27,7 @@ export function RouteContentTransition({ children }: RouteContentTransitionProps
     };
   }, []);
 
-  if (isMobile) {
+  if (isMobile !== false) {
     return <>{children}</>;
   }
 
