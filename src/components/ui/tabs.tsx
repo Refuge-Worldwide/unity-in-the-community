@@ -1,0 +1,83 @@
+'use client';
+
+import { Tabs as TabsPrimitive } from '@base-ui/react/tabs';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+import { cn } from '@/lib/utils';
+
+type ResponsiveOrientation = 'horizontal-below-lg';
+
+function Tabs({
+  className,
+  orientation = 'horizontal',
+  responsiveOrientation,
+  ...props
+}: TabsPrimitive.Root.Props & { responsiveOrientation?: ResponsiveOrientation }) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      data-orientation={orientation}
+      data-responsive-orientation={responsiveOrientation}
+      className={cn('group/tabs flex gap-2 data-horizontal:flex-col', className)}
+      {...props}
+    />
+  );
+}
+
+const tabsListVariants = cva(
+  'group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col group-data-vertical/tabs:items-start group-data-vertical/tabs:gap-1.5 group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:!flex-row group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:!flex-wrap group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:!items-center data-[variant=line]:rounded-none',
+  {
+    variants: {
+      variant: {
+        default: 'bg-muted',
+        line: 'gap-1 bg-transparent',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
+
+function TabsList({
+  className,
+  variant = 'default',
+  ...props
+}: TabsPrimitive.List.Props & VariantProps<typeof tabsListVariants>) {
+  return (
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      data-variant={variant}
+      className={cn(tabsListVariants({ variant }), className)}
+      {...props}
+    />
+  );
+}
+
+function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
+  return (
+    <TabsPrimitive.Tab
+      data-slot="tabs-trigger"
+      className={cn(
+        "relative inline-flex h-[calc(100%-1px)] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-transparent px-1.5 py-0.5 font-medium whitespace-nowrap text-foreground transition-all data-active:cursor-default group-data-vertical/tabs:h-auto group-data-vertical/tabs:flex-none group-data-vertical/tabs:justify-start group-data-vertical/tabs:px-2 group-data-vertical/tabs:py-0.5 group-data-vertical/tabs:text-left group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:!justify-center group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:!text-center focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[variant=default]/tabs-list:data-active:shadow-sm group-data-[variant=line]/tabs-list:data-active:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        'group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent',
+        'data-active:bg-accent data-active:text-foreground dark:data-active:border-input dark:data-active:bg-accent dark:data-active:text-foreground',
+        'after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-[-5px] group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:after:top-auto group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:after:right-0 group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:after:bottom-[-5px] group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:after:left-0 group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:after:h-0.5 group-data-[responsive-orientation=horizontal-below-lg]/tabs:max-lg:after:w-auto group-data-[variant=line]/tabs-list:data-active:after:opacity-100',
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
+  return (
+    <TabsPrimitive.Panel
+      data-slot="tabs-content"
+      className={cn('flex-1 outline-none', className)}
+      {...props}
+    />
+  );
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants };

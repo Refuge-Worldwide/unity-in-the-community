@@ -14,8 +14,8 @@ export default function EventsPage() {
   return (
     <>
       <h1>Events</h1>
-      <p>Find upcoming events and community gatherings.</p>
-      <div className="mt-8 space-y-6">
+      {/* <p>Find upcoming events and community gatherings.</p> */}
+      {/* <div className="mt-8 space-y-6">
         {events.map((event, idx) => (
           <div key={idx} className="flex flex-col gap-2 border-l-4 border-accent pl-4">
             <h2 className="text-xl capitalize">{event.name}</h2>
@@ -25,7 +25,7 @@ export default function EventsPage() {
             <p>{event.description}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 }

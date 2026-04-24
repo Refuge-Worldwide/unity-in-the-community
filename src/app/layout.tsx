@@ -46,7 +46,7 @@ export default function RootLayout({
         <ScrollShell>
           <RouteContentTransition>
             <div className="site-container flex-col flex">
-              <main className="flex-1 py-16">{children}</main>
+              <main className="flex-1 py-8 md:py-16">{children}</main>
               <div className="py-4">
                 <Footer />
               </div>
