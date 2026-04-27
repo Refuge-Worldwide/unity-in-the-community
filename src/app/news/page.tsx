@@ -1,16 +1,14 @@
-import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import { faker } from '@faker-js/faker';
 
 const newsItems = Array.from({ length: 7 }).map(() => ({
   title: faker.lorem.sentence(),
   date: faker.date.recent({ days: 30 }),
   content: faker.lorem.paragraphs(2),
-  imageUrl: faker.image.urlPicsumPhotos({
-    width: 640,
-    height: 420,
-    grayscale: false,
-    blur: 0,
-  }),
+  imageStyle: {
+    backgroundImage: `linear-gradient(135deg, ${faker.color.human()} 0%, rgba(12, 12, 12, 0.9) 70%)`,
+    aspectRatio: '16 / 10',
+  } as CSSProperties,
 }));
 
 export default function NewsPage() {
@@ -24,14 +22,11 @@ export default function NewsPage() {
             key={idx}
             className="grid gap-4 border-b border-border pb-8 md:grid-cols-[12rem_1fr]"
           >
-            <div className="overflow-hidden rounded-md ring-1 ring-border/60">
-              <Image
-                src={item.imageUrl}
-                alt="News item"
-                width={640}
-                height={420}
-                className="h-full w-full object-cover"
-              />
+            <div
+              className="relative overflow-hidden rounded-md ring-1 ring-inset ring-border/60"
+              style={item.imageStyle}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
             </div>
             <div>
               <h2 className="text-2xl">{item.title}</h2>
