@@ -79,7 +79,7 @@ export default function ProjectsPage() {
         responsiveOrientation="horizontal-below-lg"
         className="grid gap-8 lg:grid-cols-[minmax(10rem,16rem)_1fr]"
       >
-        <aside className="space-y-6">
+        <aside className="space-y-6 lg:sticky lg:top-0 lg:self-start">
           <h1>Projects</h1>
           <TabsList className="type-h2 bg-transparent p-0">
             {projectsByCategory.map((category) => (
