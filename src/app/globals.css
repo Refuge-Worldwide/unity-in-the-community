@@ -200,25 +200,27 @@
   }
 }
 
-::view-transition-old(.nav-forward) {
-  animation: page-out-left var(--route-transition-duration) var(--route-transition-ease) both;
-}
+@media (min-width: 48rem) {
+  ::view-transition-old(.nav-forward) {
+    animation: page-out-left var(--route-transition-duration) var(--route-transition-ease) both;
+  }
 
-::view-transition-new(.nav-forward) {
-  animation: page-in-right var(--route-transition-duration) var(--route-transition-ease) both;
-}
+  ::view-transition-new(.nav-forward) {
+    animation: page-in-right var(--route-transition-duration) var(--route-transition-ease) both;
+  }
 
-::view-transition-old(.nav-back) {
-  animation: page-out-right var(--route-transition-duration) var(--route-transition-ease) both;
-}
+  ::view-transition-old(.nav-back) {
+    animation: page-out-right var(--route-transition-duration) var(--route-transition-ease) both;
+  }
 
-::view-transition-new(.nav-back) {
-  animation: page-in-left var(--route-transition-duration) var(--route-transition-ease) both;
-}
+  ::view-transition-new(.nav-back) {
+    animation: page-in-left var(--route-transition-duration) var(--route-transition-ease) both;
+  }
 
-::view-transition-group(.nav-forward),
-::view-transition-group(.nav-back) {
-  animation: none;
+  ::view-transition-group(.nav-forward),
+  ::view-transition-group(.nav-back) {
+    animation: none;
+  }
 }
 
 ::view-transition-group(site-header) {

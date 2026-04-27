@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { ViewTransition } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -10,26 +9,6 @@ type RouteContentTransitionProps = {
 
 export function RouteContentTransition({ children }: RouteContentTransitionProps) {
   const pathname = usePathname();
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const mdBreakpoint =
-      getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-md').trim() ||
-      '48rem';
-    const mediaQuery = window.matchMedia(`(max-width: calc(${mdBreakpoint} - 0.001rem))`);
-    const updateMobileState = () => setIsMobile(mediaQuery.matches);
-
-    updateMobileState();
-    mediaQuery.addEventListener('change', updateMobileState);
-
-    return () => {
-      mediaQuery.removeEventListener('change', updateMobileState);
-    };
-  }, []);
-
-  if (isMobile !== false) {
-    return <>{children}</>;
-  }
 
   return (
     <ViewTransition
