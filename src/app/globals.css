@@ -70,7 +70,7 @@
 :root {
   --font-sans: 'Visuelt', sans-serif; /* Visuelt for body */
   --font-heading: 'BootzyTM', sans-serif; /* BootzyTM for headers */
-  --header-height: 3.5rem;
+  --header-height: 5rem;
   --route-transition-duration: 420ms;
   --route-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -110,7 +110,7 @@
 
 @media (min-width: 48rem) {
   :root {
-    --header-height: 4.5rem;
+    --header-height: 7rem;
   }
 }
 

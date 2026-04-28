@@ -38,18 +38,16 @@ export default function RootLayout({
       <body className="relative isolate flex min-h-dvh bg-background">
         <RouteBackground />
         <div
-          className="site-container fixed top-0 left-0 right-0 z-50 h-[var(--header-height)] py-4"
+          className="site-container fixed top-0 left-0 right-0 z-50 h-[var(--header-height)]"
           style={{ viewTransitionName: 'site-header' }}
         >
           <Header />
         </div>
         <ScrollShell>
           <RouteContentTransition>
-            <div className="site-container flex-col flex">
-              <main className="flex-1 py-8 md:py-16">{children}</main>
-              <div className="py-4">
-                <Footer />
-              </div>
+            <div className="site-container flex-col flex gap-8 md:gap-16">
+              <main className="flex-1">{children}</main>
+              <Footer />
             </div>
           </RouteContentTransition>
         </ScrollShell>

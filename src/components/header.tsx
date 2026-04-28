@@ -50,7 +50,7 @@ export function Header() {
   };
 
   return (
-    <header className="h-full">
+    <header className="h-full pt-4">
       <nav className="flex h-full items-start justify-between">
         <Link href="/">
           <Image
