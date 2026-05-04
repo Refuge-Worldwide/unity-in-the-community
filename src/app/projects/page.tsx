@@ -65,8 +65,8 @@ const projects = Array.from({ length: 7 }).map((_, idx) => {
 export default function ProjectsPage() {
   return (
     <section>
-      <div className="grid gap-8 lg:grid-cols-[minmax(10rem,16rem)_1fr]">
-        <aside className="space-y-6 lg:sticky lg:top-0 lg:self-start">
+      <div className="grid lg:gap-8 lg:grid-cols-[minmax(10rem,16rem)_1fr]">
+        <aside className="lg:sticky lg:top-0 lg:self-start">
           <h1>Projects</h1>
         </aside>
 

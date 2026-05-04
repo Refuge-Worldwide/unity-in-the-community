@@ -16,7 +16,7 @@ export default function NewsPage() {
     <>
       <h1>News</h1>
       {/* <p>Latest updates and announcements.</p> */}
-      <div className="mt-8 space-y-8">
+      <div className="space-y-8">
         {newsItems.map((item, idx) => (
           <article
             key={idx}
