@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
 import { Faker, en } from '@faker-js/faker';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const faker = new Faker({ locale: [en] });
 faker.seed(404);
@@ -53,7 +52,6 @@ const projects = Array.from({ length: 7 }).map((_, idx) => {
   return {
     id: faker.string.uuid(),
     title: faker.lorem.words(2).toUpperCase(),
-    category: faker.helpers.arrayElement(['current', 'past'] as const),
     dateRange: `${formatMonthYear(start)} - ${formatMonthYear(end)}`,
     description: faker.lorem.sentence(),
     priority,
@@ -64,65 +62,37 @@ const projects = Array.from({ length: 7 }).map((_, idx) => {
   };
 });
 
-const projectsByCategory = [
-  { value: 'all', projects },
-  { value: 'current', projects: projects.filter((project) => project.category === 'current') },
-  { value: 'past', projects: projects.filter((project) => project.category === 'past') },
-] as const;
-
 export default function ProjectsPage() {
   return (
     <section>
-      <Tabs
-        defaultValue="all"
-        orientation="vertical"
-        responsiveOrientation="horizontal-below-lg"
-        className="grid gap-8 lg:grid-cols-[minmax(10rem,16rem)_1fr]"
-      >
+      <div className="grid gap-8 lg:grid-cols-[minmax(10rem,16rem)_1fr]">
         <aside className="space-y-6 lg:sticky lg:top-0 lg:self-start">
           <h1>Projects</h1>
-          <TabsList className="type-h2 bg-transparent p-0">
-            {projectsByCategory.map((category) => (
-              <TabsTrigger key={category.value} value={category.value}>
-                {category.value.toUpperCase()}
-              </TabsTrigger>
-            ))}
-          </TabsList>
         </aside>
 
-        {projectsByCategory.map((category) => {
-          const filteredProjects = category.projects;
-
-          return (
-            <TabsContent
-              key={category.value}
-              value={category.value}
-              className="grid content-start items-start gap-6 md:grid-cols-12"
+        <div className="grid content-start items-start gap-6 md:grid-cols-12">
+          {projects.map((project) => (
+            <article
+              key={project.id}
+              className={`self-start space-y-3 ${priorityClassMap[project.priority]}`}
             >
-              {filteredProjects.map((project) => (
-                <article
-                  key={project.id}
-                  className={`self-start space-y-3 ${priorityClassMap[project.priority]}`}
-                >
-                  <div
-                    className="relative overflow-hidden rounded-lg ring-1 ring-inset ring-border/60"
-                    style={project.imageStyle}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between gap-3">
-                      <h2 className="type-h2 text-lg uppercase">{project.title}</h2>
-                      <p className="text-sm text-foreground">{project.dateRange}</p>
-                    </div>
-                    <p className="text-sm text-foreground">{project.description}</p>
-                  </div>
-                </article>
-              ))}
-            </TabsContent>
-          );
-        })}
-      </Tabs>
+              <div
+                className="relative overflow-hidden rounded-lg ring-1 ring-inset ring-border/60"
+                style={project.imageStyle}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between gap-3">
+                  <h2 className="type-h2 text-lg uppercase">{project.title}</h2>
+                  <p className="text-sm text-foreground">{project.dateRange}</p>
+                </div>
+                <p className="text-sm text-foreground">{project.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
