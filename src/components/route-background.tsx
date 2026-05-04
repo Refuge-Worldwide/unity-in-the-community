@@ -8,6 +8,7 @@ function getBackgroundImage(pathname: string): string {
   if (pathname.startsWith('/events')) return '/backgrounds/events.svg';
   if (pathname.startsWith('/news')) return '/backgrounds/news.svg';
   if (pathname.startsWith('/projects')) return '/backgrounds/projects.svg';
+  if (pathname.startsWith('/support-us')) return '/backgrounds/support-us.svg';
   return '/backgrounds/default.svg';
 }
 
