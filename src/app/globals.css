@@ -3,23 +3,23 @@
 @import 'shadcn/tailwind.css';
 
 @font-face {
-  font-family: 'BootzyTM';
-  src: url('/fonts/BootzyTM.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'RGGarath';
+  src: url('/fonts/RGGarathEuroRough-VariableVF.ttf') format('truetype-variations');
+  font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Visuelt';
   src: url('/fonts/VisueltLight.otf') format('opentype');
-  font-weight: 300; /* Light */
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Visuelt';
   src: url('/fonts/VisueltMedium.otf') format('opentype');
-  font-weight: 500; /* Medium */
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -68,8 +68,8 @@
 }
 
 :root {
-  --font-sans: 'Visuelt', sans-serif; /* Visuelt for body */
-  --font-heading: 'BootzyTM', sans-serif; /* BootzyTM for headers */
+  --font-sans: 'Visuelt', sans-serif;
+  --font-heading: 'RGGarath', sans-serif;
   --header-height: 5rem;
   --route-transition-duration: 420ms;
   --route-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -129,22 +129,22 @@
     @apply font-heading;
   }
   h1 {
-    @apply text-4xl leading-tight md:text-6xl mb-4;
+    @apply text-3xl leading-tight md:text-5xl mb-4;
   }
   h2 {
-    @apply text-xl leading-tight md:text-2xl;
+    @apply text-lg leading-tight md:text-xl;
   }
   h3 {
-    @apply text-2xl leading-tight md:text-3xl;
+    @apply text-xl leading-tight md:text-2xl;
   }
   h4 {
-    @apply text-xl leading-tight md:text-3xl;
+    @apply text-lg leading-tight md:text-2xl;
   }
   h5 {
-    @apply text-lg leading-snug md:text-2xl;
+    @apply text-base leading-snug md:text-xl;
   }
   h6 {
-    @apply text-base leading-snug md:text-xl;
+    @apply text-sm leading-snug md:text-lg;
   }
 }
 
@@ -184,15 +184,15 @@
   }
 
   .type-h1 {
-    @apply font-heading text-4xl leading-tight md:text-6xl;
+    @apply font-heading text-3xl leading-tight md:text-5xl;
   }
 
   .type-h2 {
-    @apply font-heading text-xl leading-tight md:text-2xl;
+    @apply font-heading text-lg leading-tight md:text-xl;
   }
 
   .type-h3 {
-    @apply text-2xl leading-tight md:text-3xl;
+    @apply text-xl leading-tight md:text-2xl;
   }
 
   .type-body {

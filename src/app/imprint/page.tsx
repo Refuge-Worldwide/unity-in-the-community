@@ -1,4 +1,5 @@
 import { Faker, en } from '@faker-js/faker';
+import { PageLayout } from '@/components/page-layout';
 
 const faker = new Faker({ locale: [en] });
 faker.seed(101);
@@ -10,16 +11,13 @@ const sections = Array.from({ length: 3 }).map((_, idx) => ({
 
 export default function ImprintPage() {
   return (
-    <>
-      <h1>Imprint</h1>
-      <div className="space-y-4">
-        {sections.map((section) => (
-          <section key={section.title}>
-            <h2 className="mb-2 font-semibold capitalize">{section.title}</h2>
-            <p>{section.body}</p>
-          </section>
-        ))}
-      </div>
-    </>
+    <PageLayout title="Imprint">
+      {sections.map((section) => (
+        <section key={section.title}>
+          <h2 className="mb-2 font-semibold capitalize">{section.title}</h2>
+          <p>{section.body}</p>
+        </section>
+      ))}
+    </PageLayout>
   );
 }

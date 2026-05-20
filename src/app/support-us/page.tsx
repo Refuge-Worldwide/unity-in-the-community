@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { buttonVariants } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Toggle } from '@/components/ui/toggle';
+import { PageLayout } from '@/components/page-layout';
 import { cn } from '@/lib/utils';
 
 const oneTimePaymentOption = {
@@ -147,81 +149,78 @@ export default function SupportUsPage() {
   };
 
   return (
-    <section>
-      <h1>Support Us</h1>
-      <div className="space-y-8">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris.
-        </p>
+    <PageLayout title="Support Us">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris.
+      </p>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          <article className="flex h-full flex-col space-y-4 rounded-xl border-2 border-foreground p-4 lg:space-y-6 lg:p-6">
-            <div className="space-y-2">
-              <h2>{oneTimePaymentOption.title}</h2>
-              <p>{oneTimePaymentOption.description}</p>
-            </div>
-            <PaymentOptions
-              fixedAmounts={oneTimePaymentOption.fixedAmounts}
-              customAmountLink={oneTimePaymentOption.customAmountLink}
-              isOneTime={true}
-              selectedLink={oneTimePayment.selectedLink}
-              onSelect={handleSelectOneTime}
-            />
-            <a
-              href={oneTimePayment.selectedLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-disabled={!oneTimePayment.selectedAmount}
-              tabIndex={!oneTimePayment.selectedAmount ? -1 : undefined}
-              className={cn(
-                buttonVariants({ variant: 'default', size: 'xl' }),
-                'w-full text-center flex items-center justify-center',
-                !oneTimePayment.selectedAmount && 'pointer-events-none opacity-50'
-              )}
-            >
-              Donate {oneTimePayment.selectedAmount} EUR
-            </a>
-          </article>
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card className="h-full">
+          <div className="space-y-2">
+            <h2>{oneTimePaymentOption.title}</h2>
+            <p>{oneTimePaymentOption.description}</p>
+          </div>
+          <PaymentOptions
+            fixedAmounts={oneTimePaymentOption.fixedAmounts}
+            customAmountLink={oneTimePaymentOption.customAmountLink}
+            isOneTime={true}
+            selectedLink={oneTimePayment.selectedLink}
+            onSelect={handleSelectOneTime}
+          />
+          <a
+            href={oneTimePayment.selectedLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-disabled={!oneTimePayment.selectedAmount}
+            tabIndex={!oneTimePayment.selectedAmount ? -1 : undefined}
+            className={cn(
+              buttonVariants({ variant: 'default', size: 'xl' }),
+              'w-full text-center flex items-center justify-center',
+              !oneTimePayment.selectedAmount && 'pointer-events-none opacity-50'
+            )}
+          >
+            Donate {oneTimePayment.selectedAmount} EUR
+          </a>
+        </Card>
 
-          <article className="space-y-4 lg:space-y-6 rounded-xl border-2 border-foreground p-4 lg:p-6 flex flex-col">
-            <div className="space-y-2">
-              <h2>{monthlyPaymentOption.title}</h2>
-              <p>{monthlyPaymentOption.description}</p>
-            </div>
-            <PaymentOptions
-              fixedAmounts={monthlyPaymentOption.fixedAmounts}
-              isOneTime={false}
-              selectedLink={monthlyPayment.selectedLink}
-              onSelect={handleSelectMonthly}
-            />
-            <div className="flex flex-1 items-center w-full">
-              <p className="text-sm text-muted-foreground">
-                You can cancel your monthly payment at any time by contacting{' '}
-                <a href="mailto:support@example.com" className="underline">
-                  support@example.com
-                </a>
-                .
-              </p>
-            </div>
-            <a
-              href={monthlyPayment.selectedLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-disabled={!monthlyPayment.selectedAmount}
-              tabIndex={!monthlyPayment.selectedAmount ? -1 : undefined}
-              className={cn(
-                buttonVariants({ variant: 'default', size: 'xl' }),
-                'w-full text-center flex items-center justify-center',
-                !monthlyPayment.selectedAmount && 'pointer-events-none opacity-50'
-              )}
-            >
-              Donate {monthlyPayment.selectedAmount} EUR / month
-            </a>
-          </article>
-        </div>
+        <Card>
+          <div className="space-y-2">
+            <h2>{monthlyPaymentOption.title}</h2>
+            <p>{monthlyPaymentOption.description}</p>
+          </div>
+          <PaymentOptions
+            fixedAmounts={monthlyPaymentOption.fixedAmounts}
+            isOneTime={false}
+            selectedLink={monthlyPayment.selectedLink}
+            onSelect={handleSelectMonthly}
+          />
+          <div className="flex flex-1 items-center w-full">
+            <p className="text-sm text-muted-foreground">
+              You can cancel your monthly payment at any time by contacting{' '}
+              <a href="mailto:support@example.com" className="underline">
+                support@example.com
+              </a>
+              .
+            </p>
+          </div>
+          <a
+            href={monthlyPayment.selectedLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-disabled={!monthlyPayment.selectedAmount}
+            tabIndex={!monthlyPayment.selectedAmount ? -1 : undefined}
+            className={cn(
+              buttonVariants({ variant: 'default', size: 'xl' }),
+              'w-full text-center flex items-center justify-center',
+              !monthlyPayment.selectedAmount && 'pointer-events-none opacity-50'
+            )}
+          >
+            Donate {monthlyPayment.selectedAmount} EUR / month
+          </a>
+        </Card>
       </div>
-    </section>
+    </PageLayout>
   );
 }

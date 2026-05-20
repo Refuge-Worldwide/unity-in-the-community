@@ -3,7 +3,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { RouteBackground } from '@/components/route-background';
 import { RouteContentTransition } from '@/components/route-content-transition';
-import { ScrollShell } from '../components/scroll-shell';
+import { ScrollShell } from '@/components/scroll-shell';
 import './globals.css';
 
 const BACKGROUND_IMAGES = [

@@ -1,4 +1,5 @@
 import { Faker, en } from '@faker-js/faker';
+import { PageLayout } from '@/components/page-layout';
 
 const faker = new Faker({ locale: [en] });
 faker.seed(202);
@@ -10,16 +11,13 @@ const sections = Array.from({ length: 5 }).map((_, idx) => ({
 
 export default function PrivacyPolicyPage() {
   return (
-    <>
-      <h1>Privacy Policy</h1>
-      <div className="space-y-4">
-        {sections.map((section) => (
-          <section key={section.title}>
-            <h2 className="mb-2 font-semibold capitalize">{section.title}</h2>
-            <p>{section.body}</p>
-          </section>
-        ))}
-      </div>
-    </>
+    <PageLayout title="Privacy Policy">
+      {sections.map((section) => (
+        <section key={section.title}>
+          <h2 className="mb-2 font-semibold capitalize">{section.title}</h2>
+          <p>{section.body}</p>
+        </section>
+      ))}
+    </PageLayout>
   );
 }

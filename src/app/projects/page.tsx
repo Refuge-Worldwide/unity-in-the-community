@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { Faker, en } from '@faker-js/faker';
+import { PageLayout } from '@/components/page-layout';
 
 const faker = new Faker({ locale: [en] });
 faker.seed(404);
@@ -64,35 +65,29 @@ const projects = Array.from({ length: 7 }).map((_, idx) => {
 
 export default function ProjectsPage() {
   return (
-    <section>
-      <div className="grid lg:gap-8 lg:grid-cols-[minmax(10rem,16rem)_1fr]">
-        <aside className="lg:sticky lg:top-0 lg:self-start">
-          <h1>Projects</h1>
-        </aside>
-
-        <div className="grid content-start items-start gap-6 md:grid-cols-12">
-          {projects.map((project) => (
-            <article
-              key={project.id}
-              className={`self-start space-y-3 ${priorityClassMap[project.priority]}`}
+    <PageLayout title="Projects">
+      <div className="grid content-start items-start gap-6 md:grid-cols-12">
+        {projects.map((project) => (
+          <article
+            key={project.id}
+            className={`self-start space-y-3 ${priorityClassMap[project.priority]}`}
+          >
+            <div
+              className="relative overflow-hidden rounded-lg ring-1 ring-inset ring-border/60"
+              style={project.imageStyle}
             >
-              <div
-                className="relative overflow-hidden rounded-lg ring-1 ring-inset ring-border/60"
-                style={project.imageStyle}
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="type-h2 text-lg uppercase">{project.title}</h2>
+                <p className="text-sm text-foreground">{project.dateRange}</p>
               </div>
-              <div className="space-y-1">
-                <div className="flex items-center justify-between gap-3">
-                  <h2 className="type-h2 text-lg uppercase">{project.title}</h2>
-                  <p className="text-sm text-foreground">{project.dateRange}</p>
-                </div>
-                <p className="text-sm text-foreground">{project.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+              <p className="text-sm text-foreground">{project.description}</p>
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
+    </PageLayout>
   );
 }

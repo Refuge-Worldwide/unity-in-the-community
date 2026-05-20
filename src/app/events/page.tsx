@@ -1,31 +1,5 @@
-import { faker } from '@faker-js/faker';
-
-const events = Array.from({ length: 5 }).map(() => ({
-  name: faker.lorem.words(3),
-  date: faker.date.between({
-    from: new Date(),
-    to: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-  }),
-  location: faker.location.city(),
-  description: faker.lorem.sentence(),
-}));
+import { PageLayout } from '@/components/page-layout';
 
 export default function EventsPage() {
-  return (
-    <>
-      <h1>Events</h1>
-      {/* <p>Find upcoming events and community gatherings.</p> */}
-      {/* <div className="mt-8 space-y-6">
-        {events.map((event, idx) => (
-          <div key={idx} className="flex flex-col gap-2 border-l-4 border-accent pl-4">
-            <h2 className="text-xl capitalize">{event.name}</h2>
-            <p className="text-sm text-muted-foreground">
-              {new Date(event.date).toLocaleDateString()} • {event.location}
-            </p>
-            <p>{event.description}</p>
-          </div>
-        ))}
-      </div> */}
-    </>
-  );
+  return <PageLayout title="Events">{null}</PageLayout>;
 }

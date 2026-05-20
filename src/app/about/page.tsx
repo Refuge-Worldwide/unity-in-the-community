@@ -1,12 +1,10 @@
 import { faker } from '@faker-js/faker';
+import { PageLayout } from '@/components/page-layout';
 
 export default function AboutPage() {
   return (
-    <>
-      <h1>About</h1>
-      <div className="space-y-4">
-        <p>{faker.lorem.paragraphs(2, '\n\n')}</p>
-      </div>
-    </>
+    <PageLayout title="About">
+      <p>{faker.lorem.paragraphs(2, '\n\n')}</p>
+    </PageLayout>
   );
 }
