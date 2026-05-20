@@ -1,4 +1,5 @@
 import { Faker, en } from '@faker-js/faker';
+import { PageLayout } from '@/components/page-layout';
 
 const faker = new Faker({ locale: [en] });
 faker.seed(303);
@@ -7,9 +8,8 @@ const description = faker.lorem.paragraph();
 
 export default function Home() {
   return (
-    <section className="flex h-full flex-col items-end justify-end text-right">
-      <h1>Unity in the Community</h1>
+    <PageLayout title="Unity in the Community" variant="hero">
       <p className="max-w-xl">{description}</p>
-    </section>
+    </PageLayout>
   );
 }
