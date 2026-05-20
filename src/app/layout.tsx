@@ -13,6 +13,7 @@ const BACKGROUND_IMAGES = [
   '/backgrounds/news.svg',
   '/backgrounds/projects.svg',
   '/backgrounds/default.svg',
+  '/backgrounds/support-us.svg',
 ];
 
 export const metadata: Metadata = {
