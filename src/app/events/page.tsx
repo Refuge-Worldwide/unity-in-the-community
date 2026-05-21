@@ -1,65 +1,97 @@
+import { ArrowRight } from 'lucide-react';
 import { faker } from '@faker-js/faker';
+import { buttonVariants } from '@/components/ui/button';
 import { PageLayout } from '@/components/page-layout';
+import { cn } from '@/lib/utils';
 
 type Event = {
   name: string;
-  date: Date;
+  startDate: Date;
+  endDate: Date;
   location: string;
   description: string;
+  moreInfoUrl?: string;
 };
 
 const events: Event[] = Array.from({ length: 8 })
-  .map(() => ({
-    name: faker.lorem.words(3),
-    date: faker.date.between({
+  .map(() => {
+    const startDate = faker.date.between({
       from: new Date(),
       to: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-    }),
-    location: faker.location.city(),
-    description: faker.lorem.sentence(),
-  }))
-  .sort((a, b) => a.date.getTime() - b.date.getTime());
+    });
+    const isMultiDay = Math.random() < 0.3;
+    const endDate = isMultiDay
+      ? new Date(startDate.getTime() + (1 + Math.floor(Math.random() * 4)) * 24 * 60 * 60 * 1000)
+      : new Date(startDate.getTime() + (1 + Math.floor(Math.random() * 4)) * 60 * 60 * 1000);
 
-function groupByMonth(events: Event[]): { label: string; events: Event[] }[] {
-  const groups = new Map<string, Event[]>();
-  for (const event of events) {
-    const key = event.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    groups.set(key, [...(groups.get(key) ?? []), event]);
-  }
-  return Array.from(groups, ([label, events]) => ({ label, events }));
+    return {
+      name: faker.lorem.sentence(6).replace(/\.$/, ''),
+      startDate,
+      endDate,
+      location: faker.location.city(),
+      description: faker.lorem.sentences(2),
+      moreInfoUrl: Math.random() < 0.5 ? '#' : undefined,
+    };
+  })
+  .sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
+
+function isSameDay(a: Date, b: Date): boolean {
+  return a.toDateString() === b.toDateString();
 }
 
-const groupedEvents = groupByMonth(events);
+function formatShortDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function formatTime(date: Date): string {
+  return date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+}
 
 export default function EventsPage() {
   return (
     <PageLayout title="Events">
-      {groupedEvents.map((group) => (
-        <section key={group.label} className="space-y-6">
-          <h2 className="font-sans uppercase">{group.label}</h2>
-          <ul className="space-y-6">
-            {group.events.map((event, idx) => (
-              <li key={idx} className="grid gap-4 sm:grid-cols-[4rem_1fr] sm:gap-8">
-                <div className="font-heading text-3xl leading-none md:text-4xl">
-                  {event.date.toLocaleDateString('en-US', { day: '2-digit' })}
+      <ul>
+        {events.map((event, idx) => {
+          const singleDay = isSameDay(event.startDate, event.endDate);
+          return (
+            <li
+              key={idx}
+              className="grid gap-6 border-t-2 border-foreground py-8 md:grid-cols-[1fr_2fr] md:gap-12"
+            >
+              <div className="flex flex-col gap-1">
+                <span className="font-heading text-2xl md:text-3xl">
+                  {singleDay
+                    ? formatShortDate(event.startDate)
+                    : `${formatShortDate(event.startDate)} – ${formatShortDate(event.endDate)}`}
+                </span>
+                <div className="flex flex-wrap items-baseline gap-x-3 text-md text-muted-foreground">
+                  <span>
+                    {singleDay
+                      ? event.startDate.toLocaleDateString('en-US', { weekday: 'long' })
+                      : `${event.startDate.toLocaleDateString('en-US', { weekday: 'long' })} – ${event.endDate.toLocaleDateString('en-US', { weekday: 'long' })}`}
+                  </span>
+                  {singleDay && (
+                    <span>
+                      {formatTime(event.startDate)} – {formatTime(event.endDate)}
+                    </span>
+                  )}
                 </div>
-                <div className="space-y-2">
-                  <h3 className="type-h2 uppercase">{event.name}</h3>
-                  <p className="text-md text-muted-foreground">
-                    {event.date.toLocaleDateString('en-US', { weekday: 'long' })} ·{' '}
-                    {event.date.toLocaleTimeString('en-US', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}{' '}
-                    · {event.location}
-                  </p>
-                  <p>{event.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-2xl md:text-3xl">{event.name}</h2>
+                <p className="text-md text-muted-foreground">{event.location}</p>
+                <p>{event.description}</p>
+                {event.moreInfoUrl && (
+                  <a href={event.moreInfoUrl} className={cn(buttonVariants({ variant: 'cta' }))}>
+                    <ArrowRight className="size-4" />
+                    More info
+                  </a>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </PageLayout>
   );
 }
