@@ -71,6 +71,7 @@
   --font-sans: 'Visuelt', sans-serif;
   --font-heading: 'RGGarath', sans-serif;
   --header-height: 5rem;
+  --footer-height: 5rem;
   --route-transition-duration: 420ms;
   --route-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -111,6 +112,7 @@
 @media (min-width: 48rem) {
   :root {
     --header-height: 7rem;
+    --footer-height: 7rem;
   }
 }
 
@@ -145,6 +147,9 @@
   }
   h6 {
     @apply text-sm leading-snug md:text-lg;
+  }
+  a {
+    @apply transition-colors;
   }
 }
 

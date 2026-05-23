@@ -56,7 +56,7 @@ export default function EventsPage() {
           return (
             <li
               key={idx}
-              className="grid gap-6 border-t-2 border-foreground py-8 md:grid-cols-[1fr_2fr] md:gap-12"
+              className="grid gap-6 border-t border-foreground py-8 md:grid-cols-[1fr_2fr] md:gap-12"
             >
               <div className="flex flex-col gap-1">
                 <span className="font-heading text-2xl md:text-3xl">

@@ -11,7 +11,7 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: 'bg-transparent',
-        outline: 'border-2 border-foreground/50 bg-transparent',
+        outline: 'border border-foreground/50 bg-transparent',
       },
       size: {
         default:

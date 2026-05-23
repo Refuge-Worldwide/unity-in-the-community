@@ -46,7 +46,7 @@ export default function RootLayout({
         </div>
         <ScrollShell>
           <RouteContentTransition>
-            <div className="site-container flex-col flex gap-8 md:gap-16">
+            <div className="site-container flex-col flex md:min-h-full">
               <main className="flex-1">{children}</main>
               <Footer />
             </div>
