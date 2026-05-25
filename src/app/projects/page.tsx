@@ -26,7 +26,7 @@ export default function ProjectsPage() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
             </Link>
             <div className="space-y-1">
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between md:gap-3">
                 <h2>
                   <Link href={`/projects/${project.slug}`} transitionTypes={['detail-open']}>
                     {project.title}

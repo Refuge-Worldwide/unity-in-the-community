@@ -21,15 +21,14 @@ export type Project = {
   body: ProjectBlock[];
 };
 
-const dummyPriorities: ProjectPriority[] = [
-  'medium',
-  'medium',
-  'low',
-  'medium',
-  'high',
-  'low',
-  'medium',
-];
+function priorityFromSlug(slug: string): ProjectPriority {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
+  const bucket = Math.abs(h) % 6;
+  if (bucket === 0) return 'high';
+  if (bucket < 3) return 'medium';
+  return 'low';
+}
 
 const dummyAspectRatios = [
   '16 / 10',
@@ -79,6 +78,7 @@ export const projects: Project[] = Array.from({ length: 25 }).map((_, idx) => {
   });
   const wordCount = faker.number.int({ min: 3, max: 8 });
   const title = faker.lorem.words(wordCount).replace(/\b\w/g, (char) => char.toUpperCase());
+  const slug = `${idx + 1}-${slugify(title)}`;
   const body: ProjectBlock[] = blockPattern.map((type) => {
     if (type === 'paragraph') {
       return { type, text: faker.lorem.paragraph({ min: 4, max: 8 }) };
@@ -91,12 +91,12 @@ export const projects: Project[] = Array.from({ length: 25 }).map((_, idx) => {
   });
 
   return {
-    slug: `${idx + 1}-${slugify(title)}`,
+    slug,
     title,
     startDate,
     endDate,
     description: faker.lorem.sentence(),
-    priority: dummyPriorities[idx] ?? 'medium',
+    priority: priorityFromSlug(slug),
     imageStyle: gradientStyle(dummyAspectRatios[idx] ?? '16 / 10'),
     body,
   };

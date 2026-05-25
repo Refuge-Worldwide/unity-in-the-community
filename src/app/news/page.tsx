@@ -12,26 +12,28 @@ export default function NewsPage() {
         <Link
           href={`/news/${featured.slug}`}
           transitionTypes={['detail-open']}
-          className="relative block aspect-[4/3] overflow-hidden rounded-md ring-1 ring-inset ring-border/60"
+          className="relative block aspect-[16/10] overflow-hidden rounded-md ring-1 ring-inset ring-border/60 md:aspect-[4/3]"
           style={featured.imageStyle}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
         </Link>
         <div className="space-y-3">
-          <h3 className="text-3xl">
+          <h3 className="md:text-3xl">
             <Link href={`/news/${featured.slug}`} transitionTypes={['detail-open']}>
               {featured.title}
             </Link>
           </h3>
           <p className="text-sm text-muted-foreground">{formatNewsDate(featured.date)}</p>
           <p>{featured.preview}</p>
-          <ArrowLink
-            href={`/news/${featured.slug}`}
-            transitionTypes={['detail-open']}
-            direction="right"
-          >
-            Read more
-          </ArrowLink>
+          <div className="hidden md:block">
+            <ArrowLink
+              href={`/news/${featured.slug}`}
+              transitionTypes={['detail-open']}
+              direction="right"
+            >
+              Read more
+            </ArrowLink>
+          </div>
         </div>
       </article>
 
