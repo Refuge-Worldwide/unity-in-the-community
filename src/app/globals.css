@@ -228,26 +228,26 @@
   }
 }
 
-::view-transition-old(.article-open) {
+::view-transition-old(.detail-open) {
   animation: fade-out var(--route-transition-duration) var(--route-transition-ease) both;
 }
 
-::view-transition-new(.article-open) {
-  animation: article-in-up var(--route-transition-duration) var(--route-transition-ease) both;
+::view-transition-new(.detail-open) {
+  animation: detail-in-up var(--route-transition-duration) var(--route-transition-ease) both;
   z-index: 2;
 }
 
-::view-transition-old(.article-close) {
-  animation: article-out-down var(--route-transition-duration) var(--route-transition-ease) both;
+::view-transition-old(.detail-close) {
+  animation: detail-out-down var(--route-transition-duration) var(--route-transition-ease) both;
   z-index: 2;
 }
 
-::view-transition-new(.article-close) {
+::view-transition-new(.detail-close) {
   animation: fade-in var(--route-transition-duration) var(--route-transition-ease) both;
 }
 
-::view-transition-group(.article-open),
-::view-transition-group(.article-close) {
+::view-transition-group(.detail-open),
+::view-transition-group(.detail-close) {
   animation: none;
 }
 
@@ -301,7 +301,7 @@
   }
 }
 
-@keyframes article-in-up {
+@keyframes detail-in-up {
   from {
     translate: 0 104%;
   }
@@ -310,7 +310,7 @@
   }
 }
 
-@keyframes article-out-down {
+@keyframes detail-out-down {
   from {
     translate: 0 0;
   }
@@ -342,8 +342,8 @@
   ::view-transition-new(.nav-forward),
   ::view-transition-old(.nav-back),
   ::view-transition-new(.nav-back),
-  ::view-transition-new(.article-open),
-  ::view-transition-old(.article-close) {
+  ::view-transition-new(.detail-open),
+  ::view-transition-old(.detail-close) {
     animation-duration: 1ms;
   }
 }

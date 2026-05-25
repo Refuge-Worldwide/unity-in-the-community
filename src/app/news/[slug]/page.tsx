@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { ArrowLink } from '@/components/arrow-link';
 import { formatNewsDate, getNewsBySlug } from '@/lib/mock-news';
-import { ScrollDownHint } from '@/components/scroll-down-hint';
+import { MaskedScrollArea } from '@/components/masked-scroll-area';
 
 export default async function NewsArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -13,7 +13,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
 
   return (
     <section className="flex flex-col gap-2 md:h-[calc(100dvh-var(--header-height)-var(--footer-height))] md:gap-4">
-      <ArrowLink href="/news" transitionTypes={['article-close']} direction="left">
+      <ArrowLink href="/news" transitionTypes={['detail-close']} direction="left">
         Back
       </ArrowLink>
       <div className="flex flex-col gap-8 md:min-h-0 md:flex-1 md:flex-row md:gap-12">
@@ -29,12 +29,12 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
           </div>
         </aside>
         <div className="md:flex md:h-full md:min-h-0 md:flex-1 md:border-l md:border-foreground md:pl-12">
-          <ScrollDownHint className="subtle-scrollbar space-y-4 text-justify hyphens-auto md:h-full md:overflow-y-auto md:pr-12">
+          <MaskedScrollArea className="subtle-scrollbar space-y-4 text-justify hyphens-auto md:h-full md:overflow-y-auto md:pr-12">
             <p className="text-lg font-bold md:text-xl">{article.preview}</p>
             {article.content.split('\n').map((para, idx) => (
               <p key={idx}>{para}</p>
             ))}
-          </ScrollDownHint>
+          </MaskedScrollArea>
         </div>
       </div>
     </section>

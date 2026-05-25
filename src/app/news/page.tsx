@@ -11,7 +11,7 @@ export default function NewsPage() {
       <article className="grid gap-6 md:grid-cols-2 md:gap-8">
         <Link
           href={`/news/${featured.slug}`}
-          transitionTypes={['article-open']}
+          transitionTypes={['detail-open']}
           className="relative block aspect-[4/3] overflow-hidden rounded-md ring-1 ring-inset ring-border/60"
           style={featured.imageStyle}
         >
@@ -19,7 +19,7 @@ export default function NewsPage() {
         </Link>
         <div className="space-y-3">
           <h3 className="text-3xl">
-            <Link href={`/news/${featured.slug}`} transitionTypes={['article-open']}>
+            <Link href={`/news/${featured.slug}`} transitionTypes={['detail-open']}>
               {featured.title}
             </Link>
           </h3>
@@ -27,7 +27,7 @@ export default function NewsPage() {
           <p>{featured.preview}</p>
           <ArrowLink
             href={`/news/${featured.slug}`}
-            transitionTypes={['article-open']}
+            transitionTypes={['detail-open']}
             direction="right"
           >
             Read more
@@ -40,7 +40,7 @@ export default function NewsPage() {
           <article key={item.slug} className="space-y-4">
             <Link
               href={`/news/${item.slug}`}
-              transitionTypes={['article-open']}
+              transitionTypes={['detail-open']}
               className="relative block aspect-[16/10] overflow-hidden rounded-md ring-1 ring-inset ring-border/60"
               style={item.imageStyle}
             >
@@ -48,7 +48,7 @@ export default function NewsPage() {
             </Link>
             <div>
               <h3>
-                <Link href={`/news/${item.slug}`} transitionTypes={['article-open']}>
+                <Link href={`/news/${item.slug}`} transitionTypes={['detail-open']}>
                   {item.title}
                 </Link>
               </h3>
