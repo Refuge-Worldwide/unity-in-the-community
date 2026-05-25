@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { MenuIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
@@ -77,13 +77,10 @@ function NavCtaLink({
       href={href}
       transitionTypes={transitionTypes}
       onClick={onClick}
+      data-active={isActive || undefined}
       className={cn(
-        'rounded-full border transition-colors',
-        'hover:border-accent hover:text-accent active:border-accent active:text-accent focus-visible:border-accent focus-visible:text-accent',
-        variant === 'desktop'
-          ? '-my-px px-2'
-          : 'mt-auto inline-flex w-full items-center justify-center px-3',
-        isActive ? 'border-accent text-accent' : 'border-foreground text-foreground'
+        buttonVariants({ variant: 'cta' }),
+        variant === 'desktop' ? '-my-px px-2' : 'mt-auto w-full px-3'
       )}
     >
       {children}
@@ -109,7 +106,7 @@ export function Header() {
           />
         </Link>
 
-        <div className="type-h2 ml-auto hidden flex-wrap gap-4 md:flex">
+        <div className="type-h2 ml-auto hidden flex-wrap items-baseline gap-4 md:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}

@@ -44,9 +44,7 @@ export function MaskedScrollArea({
   const maskImage = (() => {
     if (!fadeTop && !fadeBottom) return undefined;
     const top = fadeTop ? `transparent 0, black ${FADE}` : `black 0`;
-    const bottom = fadeBottom
-      ? `black calc(100% - ${FADE}), transparent 100%`
-      : `black 100%`;
+    const bottom = fadeBottom ? `black calc(100% - ${FADE}), transparent 100%` : `black 100%`;
     return `linear-gradient(to bottom, ${top}, ${bottom})`;
   })();
 
