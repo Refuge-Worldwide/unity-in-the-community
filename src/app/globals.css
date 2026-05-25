@@ -25,7 +25,7 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
-  --font-heading: var(--font-heading);
+  --font-heading: var(--font-sans);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -111,8 +111,8 @@
 
 @media (min-width: 48rem) {
   :root {
-    --header-height: 7rem;
-    --footer-height: 7rem;
+    --header-height: 6rem;
+    --footer-height: 6rem;
   }
 }
 
@@ -128,16 +128,16 @@
   }
   h1,
   h2 {
-    @apply font-heading;
+    @apply font-heading font-medium;
   }
   h1 {
-    @apply text-3xl leading-tight md:text-5xl mb-4;
+    @apply text-2xl leading-tight md:text-4xl mb-4;
   }
   h2 {
     @apply text-lg leading-tight md:text-xl;
   }
   h3 {
-    @apply text-xl leading-tight md:text-2xl;
+    @apply text-lg font-medium leading-tight md:text-xl;
   }
   h4 {
     @apply text-lg leading-tight md:text-2xl;
@@ -189,15 +189,15 @@
   }
 
   .type-h1 {
-    @apply font-heading text-3xl leading-tight md:text-5xl;
+    @apply font-heading font-medium text-2xl leading-tight md:text-4xl;
   }
 
   .type-h2 {
-    @apply font-heading text-lg leading-tight md:text-xl;
+    @apply font-heading font-medium text-lg leading-tight md:text-xl;
   }
 
   .type-h3 {
-    @apply text-xl leading-tight md:text-2xl;
+    @apply text-base font-medium leading-tight md:text-lg;
   }
 
   .type-body {
@@ -226,6 +226,29 @@
   ::view-transition-group(.nav-back) {
     animation: none;
   }
+}
+
+::view-transition-old(.article-open) {
+  animation: fade-out var(--route-transition-duration) var(--route-transition-ease) both;
+}
+
+::view-transition-new(.article-open) {
+  animation: article-in-up var(--route-transition-duration) var(--route-transition-ease) both;
+  z-index: 2;
+}
+
+::view-transition-old(.article-close) {
+  animation: article-out-down var(--route-transition-duration) var(--route-transition-ease) both;
+  z-index: 2;
+}
+
+::view-transition-new(.article-close) {
+  animation: fade-in var(--route-transition-duration) var(--route-transition-ease) both;
+}
+
+::view-transition-group(.article-open),
+::view-transition-group(.article-close) {
+  animation: none;
 }
 
 ::view-transition-group(site-header) {
@@ -278,11 +301,49 @@
   }
 }
 
+@keyframes article-in-up {
+  from {
+    translate: 0 104%;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes article-out-down {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 104%;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(.nav-forward),
   ::view-transition-new(.nav-forward),
   ::view-transition-old(.nav-back),
-  ::view-transition-new(.nav-back) {
+  ::view-transition-new(.nav-back),
+  ::view-transition-new(.article-open),
+  ::view-transition-old(.article-close) {
     animation-duration: 1ms;
   }
 }

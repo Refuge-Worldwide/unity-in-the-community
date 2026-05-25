@@ -46,13 +46,23 @@ export function ScrollDownHint({ children, className }: ScrollDownHintProps) {
         {children}
       </div>
       <div
-        aria-hidden
         className={cn(
-          'pointer-events-none absolute inset-x-0 bottom-0 hidden justify-center pb-2 transition-opacity duration-300 md:flex',
-          visible ? 'opacity-100' : 'opacity-0'
+          'absolute inset-x-0 bottom-0 hidden justify-center pb-2 transition-opacity duration-300 md:flex',
+          visible ? 'opacity-100' : 'pointer-events-none opacity-0'
         )}
       >
-        <ChevronDown className="size-8 text-muted-foreground" />
+        <button
+          type="button"
+          aria-label="Scroll down"
+          onClick={() => {
+            const el = scrollRef.current;
+            if (!el) return;
+            el.scrollBy({ top: el.clientHeight * 0.8, behavior: 'smooth' });
+          }}
+          className="cursor-pointer text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ChevronDown className="size-8" />
+        </button>
       </div>
     </div>
   );

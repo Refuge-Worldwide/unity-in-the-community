@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLink } from '@/components/arrow-link';
 import { formatNewsDate, getNewsBySlug } from '@/lib/mock-news';
 import { ScrollDownHint } from '@/components/scroll-down-hint';
 
@@ -9,15 +8,14 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
   const article = getNewsBySlug(slug);
 
   if (!article) {
-    notFound();
+    notFound(); // TODO: weird styling
   }
 
   return (
-    <section className="flex flex-col gap-2 md:h-[calc(100dvh-var(--header-height)-var(--footer-height))] md:gap-2">
-      <Link href="/news" className="inline-flex w-fit items-center gap-2 text-xl">
-        <ArrowLeft className="size-6 -translate-y-px" />
+    <section className="flex flex-col gap-2 md:h-[calc(100dvh-var(--header-height)-var(--footer-height))] md:gap-4">
+      <ArrowLink href="/news" transitionTypes={['article-close']} direction="left">
         Back
-      </Link>
+      </ArrowLink>
       <div className="flex flex-col gap-8 md:min-h-0 md:flex-1 md:flex-row md:gap-12">
         <aside className="flex max-w-lg xl:max-w-2xl 2xl:max-w-3xl flex-col gap-6 md:flex-1 md:gap-8">
           <h1>{article.title}</h1>

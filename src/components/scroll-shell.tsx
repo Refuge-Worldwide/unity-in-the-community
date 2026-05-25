@@ -1,22 +1,53 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 type ScrollShellProps = {
   children: React.ReactNode;
 };
 
+function isAncestor(parent: string, child: string): boolean {
+  return child !== parent && child.startsWith(parent === '/' ? '/' : `${parent}/`);
+}
+
 export function ScrollShell({ children }: ScrollShellProps) {
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
+  const previousPathname = useRef(pathname);
+  const scrollPositions = useRef(new Map<string, number>());
 
-  useLayoutEffect(() => {
-    if (!containerRef.current) {
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) {
       return;
     }
 
-    containerRef.current.scrollTop = 0;
+    const trackedPathname = pathname;
+    const handleScroll = () => {
+      if (previousPathname.current !== trackedPathname) {
+        return;
+      }
+      scrollPositions.current.set(trackedPathname, container.scrollTop);
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container) {
+      return;
+    }
+
+    if (isAncestor(pathname, previousPathname.current)) {
+      container.scrollTop = scrollPositions.current.get(pathname) ?? 0;
+    } else {
+      container.scrollTop = 0;
+    }
+
+    previousPathname.current = pathname;
   }, [pathname]);
 
   return (

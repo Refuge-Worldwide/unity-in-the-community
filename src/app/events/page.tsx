@@ -1,8 +1,6 @@
-import { ArrowRight } from 'lucide-react';
 import { faker } from '@faker-js/faker';
-import { buttonVariants } from '@/components/ui/button';
+import { ArrowLink } from '@/components/arrow-link';
 import { PageLayout } from '@/components/page-layout';
-import { cn } from '@/lib/utils';
 
 type Event = {
   name: string;
@@ -25,7 +23,7 @@ const events: Event[] = Array.from({ length: 8 })
       : new Date(startDate.getTime() + (1 + Math.floor(Math.random() * 4)) * 60 * 60 * 1000);
 
     return {
-      name: faker.lorem.sentence(6).replace(/\.$/, ''),
+      name: faker.lorem.sentence({ min: 2, max: 7 }).replace(/\.$/, ''),
       startDate,
       endDate,
       location: faker.location.city(),
@@ -58,12 +56,12 @@ export default function EventsPage() {
               key={idx}
               className="grid gap-6 border-t border-foreground py-8 md:grid-cols-[1fr_2fr] md:gap-12"
             >
-              <div className="flex flex-col gap-1">
-                <span className="font-heading text-2xl md:text-3xl">
+              <div className="flex flex-col">
+                <h2 className="">
                   {singleDay
                     ? formatShortDate(event.startDate)
                     : `${formatShortDate(event.startDate)} – ${formatShortDate(event.endDate)}`}
-                </span>
+                </h2>
                 <div className="flex flex-wrap items-baseline gap-x-3 text-md text-muted-foreground">
                   <span>
                     {singleDay
@@ -78,14 +76,15 @@ export default function EventsPage() {
                 </div>
               </div>
               <div className="space-y-3">
-                <h2 className="text-2xl md:text-3xl">{event.name}</h2>
-                <p className="text-md text-muted-foreground">{event.location}</p>
+                <div>
+                  <h2>{event.name}</h2>
+                  <p className="text-md text-muted-foreground">{event.location}</p>
+                </div>
                 <p>{event.description}</p>
                 {event.moreInfoUrl && (
-                  <a href={event.moreInfoUrl} className={cn(buttonVariants({ variant: 'cta' }))}>
-                    <ArrowRight className="size-4" />
+                  <ArrowLink href={event.moreInfoUrl} direction="right">
                     More info
-                  </a>
+                  </ArrowLink>
                 )}
               </div>
             </li>

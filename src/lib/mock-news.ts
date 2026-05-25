@@ -1,6 +1,8 @@
 import type { CSSProperties } from 'react';
 import { faker } from '@faker-js/faker';
 
+faker.seed(1);
+
 export type NewsItem = {
   slug: string;
   title: string;

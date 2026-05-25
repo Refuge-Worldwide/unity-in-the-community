@@ -80,10 +80,10 @@ export default function ProjectsPage() {
             </div>
             <div className="space-y-1">
               <div className="flex items-center justify-between gap-3">
-                <h2 className="type-h2 text-lg uppercase">{project.title}</h2>
-                <p className="text-sm text-foreground">{project.dateRange}</p>
+                <h2>{project.title}</h2>
+                <p className="text-sm">{project.dateRange}</p>
               </div>
-              <p className="text-sm text-foreground">{project.description}</p>
+              <p className="text-sm">{project.description}</p>
             </div>
           </article>
         ))}

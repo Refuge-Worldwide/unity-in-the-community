@@ -105,10 +105,11 @@ export function Header() {
             width={2993}
             height={905}
             className="h-9 w-auto md:h-10"
+            priority
           />
         </Link>
 
-        <div className="type-h2 ml-auto hidden flex-wrap gap-4 uppercase md:flex">
+        <div className="type-h2 ml-auto hidden flex-wrap gap-4 md:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}

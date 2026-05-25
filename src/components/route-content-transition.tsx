@@ -16,11 +16,15 @@ export function RouteContentTransition({ children }: RouteContentTransitionProps
       enter={{
         'nav-forward': 'nav-forward',
         'nav-back': 'nav-back',
+        'article-open': 'article-open',
+        'article-close': 'article-close',
         default: 'none',
       }}
       exit={{
         'nav-forward': 'nav-forward',
         'nav-back': 'nav-back',
+        'article-open': 'article-open',
+        'article-close': 'article-close',
         default: 'none',
       }}
       default="none"
