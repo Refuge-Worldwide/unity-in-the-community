@@ -24,9 +24,16 @@ export default function ProjectsPage() {
               style={project.imageStyle}
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
+              <div className="absolute inset-x-0 bottom-0 space-y-1 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 md:hidden">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                  {formatProjectDateRange(project)}
+                </p>
+                <h2 className="text-balance">{project.title}</h2>
+                <p className="text-sm">{project.description}</p>
+              </div>
             </Link>
-            <div className="space-y-1">
-              <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between md:gap-3">
+            <div className="hidden md:block md:space-y-1">
+              <div className="flex flex-row items-center justify-between gap-3">
                 <h2>
                   <Link href={`/projects/${project.slug}`} transitionTypes={['detail-open']}>
                     {project.title}
