@@ -16,9 +16,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const contentType = req.headers.get('x-contentful-content-type');
+  const body = (await req.json().catch(() => null)) as {
+    sys?: { contentType?: { sys?: { id?: string } } };
+  } | null;
+  const contentType = body?.sys?.contentType?.sys?.id;
   if (!contentType) {
-    return NextResponse.json({ error: 'Missing content type header' }, { status: 400 });
+    return NextResponse.json({ error: 'Missing content type in payload' }, { status: 400 });
   }
 
   const tag = CONTENT_TYPE_TAGS[contentType];
