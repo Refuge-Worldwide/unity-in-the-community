@@ -6,6 +6,7 @@ export type Event = {
   date: string;
   endDate: string | null;
   location: string | null;
+  price: string | null;
   description: Document | null;
   ticketLink: string | null;
   linkText: string | null;

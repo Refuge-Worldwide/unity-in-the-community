@@ -65,6 +65,7 @@ export function EventRow({ event }: { event: Event }) {
             </button>
           )}
         </div>
+        {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
         {event.description && (
           <div className={`space-y-3 ${expanded ? '' : 'hidden'} md:block`}>
             {documentToReactComponents(event.description)}

@@ -13,6 +13,7 @@ type EventCollectionResponse = {
       date: string;
       endDate: string | null;
       location: string | null;
+      price: string | null;
       description: { json: Document } | null;
       ticketLink: string | null;
       linkText: string | null;
@@ -35,6 +36,7 @@ const EVENTS_QUERY = /* GraphQL */ `
         date
         endDate
         location
+        price
         description {
           json
         }
@@ -64,6 +66,7 @@ export async function getEvents(): Promise<Event[]> {
     date: item.date,
     endDate: item.endDate,
     location: item.location,
+    price: item.price,
     description: item.description?.json ?? null,
     ticketLink: item.ticketLink,
     linkText: item.linkText,
