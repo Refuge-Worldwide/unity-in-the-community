@@ -21,3 +21,4 @@ function readSpace(prefix: 'EVENTS' | 'MAIN'): SpaceConfig {
 }
 
 export const eventsSpace = readSpace('EVENTS');
+export const mainSpace = readSpace('MAIN');

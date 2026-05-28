@@ -5,9 +5,16 @@ import { useEffect, useRef } from 'react';
 import { ArrowLink } from '@/components/arrow-link';
 import { MaskedScrollArea } from '@/components/masked-scroll-area';
 import { cn } from '@/lib/utils';
-import { projects } from '@/lib/mock-projects';
 
-export function ProjectSidebar({ currentSlug }: { currentSlug: string }) {
+type SidebarProject = { slug: string; title: string };
+
+export function ProjectSidebar({
+  currentSlug,
+  projects,
+}: {
+  currentSlug: string;
+  projects: SidebarProject[];
+}) {
   const currentRef = useRef<HTMLLIElement>(null);
   const hasMountedRef = useRef(false);
 

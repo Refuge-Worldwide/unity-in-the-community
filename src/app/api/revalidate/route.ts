@@ -1,9 +1,11 @@
 import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { EVENTS_TAG } from '@/lib/contentful/events';
+import { PROJECTS_TAG } from '@/lib/contentful/projects';
 
 const CONTENT_TYPE_TAGS: Record<string, string> = {
   event: EVENTS_TAG,
+  project: PROJECTS_TAG,
 };
 
 export async function POST(req: NextRequest) {

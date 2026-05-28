@@ -26,6 +26,7 @@ export async function contentfulFetch<TData>({
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ query, variables: { ...variables, preview } }),
+    cache: preview ? 'no-store' : 'force-cache',
     next: { tags },
   });
 
