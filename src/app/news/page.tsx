@@ -18,7 +18,7 @@ export default async function NewsPage() {
 
   return (
     <PageLayout title="News">
-      <article className="grid gap-6 md:grid-cols-2 md:gap-8">
+      <article className="space-y-3 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
         <Link
           href={`/news/${featured.slug}`}
           transitionTypes={['detail-open']}
@@ -35,7 +35,7 @@ export default async function NewsPage() {
           )}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
         </Link>
-        <div className="space-y-3">
+        <div className="space-y-1 md:space-y-3">
           <h3 className="md:text-3xl">
             <Link href={`/news/${featured.slug}`} transitionTypes={['detail-open']}>
               {featured.title}
@@ -57,7 +57,7 @@ export default async function NewsPage() {
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {rest.map((item) => (
-          <article key={item.slug} className="space-y-4">
+          <article key={item.slug} className="space-y-3 md:space-y-4">
             <Link
               href={`/news/${item.slug}`}
               transitionTypes={['detail-open']}
@@ -74,14 +74,14 @@ export default async function NewsPage() {
               )}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
             </Link>
-            <div>
+            <div className="space-y-1">
               <h3>
                 <Link href={`/news/${item.slug}`} transitionTypes={['detail-open']}>
                   {item.title}
                 </Link>
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground">{formatNewsDate(item.date)}</p>
-              {item.subtitle && <p className="mt-2">{item.subtitle}</p>}
+              <p className="text-sm text-muted-foreground">{formatNewsDate(item.date)}</p>
+              {item.subtitle && <p>{item.subtitle}</p>}
             </div>
           </article>
         ))}

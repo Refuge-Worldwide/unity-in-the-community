@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
-import { ArrowLink } from '@/components/arrow-link';
+import { BackLink } from '@/components/back-link';
 import { MaskedScrollArea } from '@/components/masked-scroll-area';
 import { cn } from '@/lib/utils';
 
@@ -28,10 +28,8 @@ export function ProjectSidebar({
   }, [currentSlug]);
 
   return (
-    <aside className="flex flex-col gap-8 md:w-80 md:shrink-0 md:self-start md:sticky md:top-0">
-      <ArrowLink href="/projects" transitionTypes={['detail-close']} direction="left">
-        Back
-      </ArrowLink>
+    <aside className="flex flex-col md:w-80 md:shrink-0 md:self-start md:sticky md:top-0">
+      <BackLink href="/projects">Back</BackLink>
       <nav className="hidden md:block">
         <MaskedScrollArea className="h-[50vh] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <ul className="space-y-4">

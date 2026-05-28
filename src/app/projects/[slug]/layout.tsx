@@ -10,7 +10,7 @@ export default async function ProjectDetailLayout({
   const sidebarProjects = projects.map((p) => ({ slug: p.slug, title: p.title }));
 
   return (
-    <div className="flex flex-col gap-8 md:flex-row md:gap-20">
+    <div className="flex flex-col md:flex-row md:gap-20">
       <ProjectSidebar currentSlug={slug} projects={sidebarProjects} />
       {children}
     </div>

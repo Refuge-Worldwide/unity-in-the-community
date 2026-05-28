@@ -36,7 +36,7 @@ export default async function ProjectsPage() {
                 />
               )}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
-              <div className="absolute inset-x-0 bottom-0 space-y-1 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 md:hidden">
+              <div className="absolute inset-x-0 bottom-0 space-y-1 bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.7)_25%,rgba(0,0,0,0.4)_55%,rgba(0,0,0,0.15)_80%,transparent_100%)] p-4 pt-16 md:hidden">
                 {project.timeframe && (
                   <p className="text-xs uppercase tracking-wider text-muted-foreground">
                     {project.timeframe}
