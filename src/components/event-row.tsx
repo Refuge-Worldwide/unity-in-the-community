@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { PlainRichText } from '@/components/rich-text';
 import { ArrowLink } from '@/components/arrow-link';
 import type { Event } from '@/lib/contentful/types';
 
@@ -65,8 +65,8 @@ export function EventRow({ event }: { event: Event }) {
             </button>
           )}
         </div>
-        <div className={`space-y-3 ${expanded ? '' : 'hidden'} md:block`}>
-          {event.description && documentToReactComponents(event.description)}
+        <div className={`prose ${expanded ? '' : 'hidden'} md:block`}>
+          {event.description && <PlainRichText document={event.description} />}
           {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
         </div>
         {event.ticketLink && (

@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@plugin '@tailwindcss/typography';
 
 @font-face {
   font-family: 'RGGarath';
@@ -154,6 +155,21 @@
 }
 
 @layer utilities {
+  .prose {
+    @apply prose-invert prose-base max-w-none md:prose-lg;
+    --tw-prose-invert-body: var(--foreground);
+    --tw-prose-invert-headings: var(--foreground);
+    --tw-prose-invert-lead: var(--foreground);
+    --tw-prose-invert-links: var(--foreground);
+    --tw-prose-invert-bold: var(--foreground);
+    --tw-prose-invert-counters: var(--foreground);
+    --tw-prose-invert-bullets: var(--foreground);
+    --tw-prose-invert-hr: var(--foreground);
+    --tw-prose-invert-quotes: var(--foreground);
+    --tw-prose-invert-quote-borders: var(--foreground);
+    --tw-prose-invert-captions: var(--muted-foreground);
+  }
+
   .site-bg-layer {
     @apply fixed inset-0 z-0 bg-cover bg-center bg-no-repeat;
     transform: scale(1.04);

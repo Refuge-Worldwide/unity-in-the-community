@@ -1,7 +1,7 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLink } from '@/components/arrow-link';
+import { RichText } from '@/components/rich-text';
 import { getProjectBySlug } from '@/lib/contentful/projects';
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -34,8 +34,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       )}
 
       {project.description && (
-        <article className="w-full space-y-6">
-          {documentToReactComponents(project.description)}
+        <article className="prose w-full">
+          <RichText content={project.description} />
         </article>
       )}
 
