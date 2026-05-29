@@ -1,7 +1,7 @@
 import type { Document } from '@contentful/rich-text-types';
-import { contentfulFetch } from './client';
-import { eventsSpace } from './spaces';
-import type { Event } from './types';
+import { contentfulFetch } from '../client';
+import { eventsSpace } from '../spaces';
+import type { Event } from '../types';
 
 export const EVENTS_TAG = 'events';
 

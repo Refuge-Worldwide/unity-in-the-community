@@ -1,7 +1,8 @@
-import { contentfulFetch } from './client';
-import { RICH_TEXT_FIELDS, type RawRichTextField, toRichText } from './rich-text';
-import { mainSpace } from './spaces';
-import type { NewsArticle, NewsArticleSummary, NewsImage } from './types';
+import { contentfulFetch } from '../client';
+import { type RawImage, toImage } from '../fields/image';
+import { RICH_TEXT_FIELDS, type RawRichTextField, toRichText } from '../fields/rich-text';
+import { mainSpace } from '../spaces';
+import type { NewsArticle, NewsArticleSummary } from '../types';
 
 export const NEWS_TAG = 'news';
 
@@ -12,12 +13,7 @@ type RawNewsSummary = {
   subtitle: string | null;
   date: string | null;
   author: string | null;
-  coverImage: {
-    url: string | null;
-    width: number | null;
-    height: number | null;
-    title: string | null;
-  } | null;
+  coverImage: RawImage;
 };
 
 type RawNewsArticle = RawNewsSummary & {
@@ -67,11 +63,6 @@ const NEWS_BY_SLUG_QUERY = /* GraphQL */ `
     }
   }
 `;
-
-function toImage(raw: RawNewsSummary['coverImage']): NewsImage | null {
-  if (!raw || !raw.url || raw.width == null || raw.height == null) return null;
-  return { url: raw.url, width: raw.width, height: raw.height, title: raw.title };
-}
 
 function toSummary(raw: RawNewsSummary): NewsArticleSummary | null {
   if (!raw.slug || !raw.title || !raw.date) return null;

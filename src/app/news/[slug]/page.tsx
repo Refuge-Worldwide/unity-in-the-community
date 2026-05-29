@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { BackLink } from '@/components/back-link';
 import { MaskedScrollArea } from '@/components/masked-scroll-area';
 import { RichText } from '@/components/rich-text';
-import { formatNewsDate, getNewsArticleBySlug } from '@/lib/contentful/news';
+import { formatNewsDate, getNewsArticleBySlug } from '@/lib/contentful/content/news';
 
 export default async function NewsArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

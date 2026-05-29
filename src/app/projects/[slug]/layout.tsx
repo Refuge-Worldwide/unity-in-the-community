@@ -1,5 +1,5 @@
-import { ProjectSidebar } from '@/components/project-sidebar';
-import { getProjects } from '@/lib/contentful/projects';
+import { ProjectSidebar } from './project-sidebar';
+import { getProjects } from '@/lib/contentful/content/projects';
 
 export default async function ProjectDetailLayout({
   children,

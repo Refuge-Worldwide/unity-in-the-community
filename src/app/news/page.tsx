@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLink } from '@/components/arrow-link';
 import { PageLayout } from '@/components/page-layout';
-import { formatNewsDate, getNewsArticles } from '@/lib/contentful/news';
+import { formatNewsDate, getNewsArticles } from '@/lib/contentful/content/news';
 
 export default async function NewsPage() {
   const newsItems = await getNewsArticles();

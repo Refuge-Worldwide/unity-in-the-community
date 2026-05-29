@@ -1,5 +1,5 @@
 import type { Document } from '@contentful/rich-text-types';
-import type { EmbeddedAsset, RichTextContent } from './types';
+import type { EmbeddedAsset, RichTextContent } from '../types';
 
 export type RawRichTextField = {
   json: Document;

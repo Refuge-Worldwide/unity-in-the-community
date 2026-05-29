@@ -1,7 +1,8 @@
-import { contentfulFetch } from './client';
-import { RICH_TEXT_FIELDS, type RawRichTextField, toRichText } from './rich-text';
-import { mainSpace } from './spaces';
-import type { Project, ProjectImage, ProjectPriority, ProjectSummary } from './types';
+import { contentfulFetch } from '../client';
+import { type RawImage, toImage } from '../fields/image';
+import { RICH_TEXT_FIELDS, type RawRichTextField, toRichText } from '../fields/rich-text';
+import { mainSpace } from '../spaces';
+import type { Project, ProjectPriority, ProjectSummary } from '../types';
 
 export const PROJECTS_TAG = 'projects';
 
@@ -11,12 +12,7 @@ type RawProjectSummary = {
   projectName: string | null;
   timeframe: string | null;
   priority: string | null;
-  galleryImage: {
-    url: string | null;
-    width: number | null;
-    height: number | null;
-    title: string | null;
-  } | null;
+  galleryImage: RawImage;
 };
 
 type RawProject = RawProjectSummary & {
@@ -75,11 +71,6 @@ const PRIORITIES: ProjectPriority[] = ['low', 'medium', 'high'];
 
 function normalizePriority(value: string | null): ProjectPriority {
   return value && (PRIORITIES as string[]).includes(value) ? (value as ProjectPriority) : 'medium';
-}
-
-function toImage(raw: RawProjectSummary['galleryImage']): ProjectImage | null {
-  if (!raw || !raw.url || raw.width == null || raw.height == null) return null;
-  return { url: raw.url, width: raw.width, height: raw.height, title: raw.title };
 }
 
 function toSummary(raw: RawProjectSummary): ProjectSummary | null {

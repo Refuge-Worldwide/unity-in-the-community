@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLink } from '@/components/arrow-link';
 import { RichText } from '@/components/rich-text';
-import { getProjectBySlug } from '@/lib/contentful/projects';
+import { getProjectBySlug } from '@/lib/contentful/content/projects';
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

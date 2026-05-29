@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { PageLayout } from '@/components/page-layout';
-import { getProjects } from '@/lib/contentful/projects';
+import { getProjects } from '@/lib/contentful/content/projects';
 import type { ProjectPriority } from '@/lib/contentful/types';
 
 const priorityClassMap: Record<ProjectPriority, string> = {
