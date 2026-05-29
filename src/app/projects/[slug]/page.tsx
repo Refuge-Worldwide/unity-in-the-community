@@ -16,9 +16,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     <section className="flex min-w-0 flex-1 flex-col gap-8 md:gap-12">
       <header className="space-y-2">
         {project.timeframe && (
-          <p className="text-sm uppercase tracking-wider text-muted-foreground">
-            {project.timeframe}
-          </p>
+          <p className="tracking-wider text-muted-foreground">{project.timeframe}</p>
         )}
         <h1 className="mb-0">{project.title}</h1>
       </header>
@@ -29,7 +27,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           alt={project.image.title ?? project.title}
           width={project.image.width}
           height={project.image.height}
-          className="h-auto w-full rounded-lg ring-1 ring-inset ring-border/60"
+          className="h-auto w-full rounded-sm md:rounded-md md:ring-1 md:ring-inset md:ring-border/60"
         />
       )}
 

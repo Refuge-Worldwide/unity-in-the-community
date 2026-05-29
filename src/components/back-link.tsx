@@ -9,7 +9,7 @@ type BackLinkProps = {
 
 export function BackLink({ href, children }: BackLinkProps) {
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <ArrowLink href={href} direction="left" transitionTypes={['detail-close']}>
         {children}
       </ArrowLink>

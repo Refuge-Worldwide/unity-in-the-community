@@ -1,5 +1,6 @@
 import { EventRow } from './event-row';
 import { PageLayout } from '@/components/page-layout';
+import { RevealContainer, RevealItem } from '@/components/scroll-reveal';
 import { getEvents } from '@/lib/contentful/content/events';
 
 export default async function EventsPage() {
@@ -7,11 +8,13 @@ export default async function EventsPage() {
 
   return (
     <PageLayout title="Events">
-      <ul>
+      <RevealContainer as="ul">
         {events.map((event) => (
-          <EventRow key={event.id} event={event} />
+          <RevealItem key={event.id} as="li">
+            <EventRow event={event} />
+          </RevealItem>
         ))}
-      </ul>
+      </RevealContainer>
     </PageLayout>
   );
 }

@@ -93,7 +93,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="h-full pt-4">
+    <header className="h-full pt-4 md:pt-6">
       <nav className="flex h-full items-start justify-between">
         <Link href="/">
           <Image

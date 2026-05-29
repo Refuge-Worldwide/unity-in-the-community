@@ -16,7 +16,7 @@ function buildOptions(content: RichTextContent): Options {
             alt={asset.description ?? asset.title ?? ''}
             width={asset.width}
             height={asset.height}
-            className="h-auto w-full rounded-md"
+            className="h-auto w-full rounded-sm md:rounded-md"
           />
         );
       },

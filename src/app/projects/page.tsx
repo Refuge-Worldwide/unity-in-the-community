@@ -1,8 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { PageLayout } from '@/components/page-layout';
+import { RevealContainer, RevealItem } from '@/components/scroll-reveal';
 import { getProjects } from '@/lib/contentful/content/projects';
 import type { ProjectPriority } from '@/lib/contentful/types';
+import { ProjectCardDesktopImage, ProjectCardMobile } from './project-card';
 
 const priorityClassMap: Record<ProjectPriority, string> = {
   low: 'md:col-span-4',
@@ -15,41 +16,19 @@ export default async function ProjectsPage() {
 
   return (
     <PageLayout title="Projects">
-      <div className="grid content-start items-start gap-2 md:gap-6 md:grid-cols-12">
-        {projects.map((project) => (
-          <article
+      <RevealContainer className="grid content-start items-start gap-2 md:grid-cols-12 md:gap-6">
+        {projects.map((project, index) => (
+          <RevealItem
             key={project.slug}
             className={`self-start space-y-3 ${priorityClassMap[project.priority]}`}
           >
-            <Link
-              href={`/projects/${project.slug}`}
-              transitionTypes={['detail-open']}
-              className="relative block overflow-hidden rounded-lg ring-1 ring-inset ring-border/60"
-            >
-              {project.image && (
-                <Image
-                  src={project.image.url}
-                  alt={project.image.title ?? project.title}
-                  width={project.image.width}
-                  height={project.image.height}
-                  className="h-auto w-full"
-                />
-              )}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)]" />
-              <div className="absolute inset-x-0 bottom-0 space-y-1 bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.7)_25%,rgba(0,0,0,0.4)_55%,rgba(0,0,0,0.15)_80%,transparent_100%)] p-4 pt-16 md:hidden">
-                {project.timeframe && (
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    {project.timeframe}
-                  </p>
-                )}
-                <h2 className="text-balance">{project.title}</h2>
-              </div>
-            </Link>
+            <div className="md:hidden">
+              <ProjectCardMobile project={project} alignRight={index % 2 === 1} />
+            </div>
+            <ProjectCardDesktopImage project={project} />
             <div className="hidden md:block md:space-y-1">
               {project.timeframe && (
-                <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                  {project.timeframe}
-                </p>
+                <small className="tracking-wider text-muted-foreground">{project.timeframe}</small>
               )}
               <h2>
                 <Link href={`/projects/${project.slug}`} transitionTypes={['detail-open']}>
@@ -57,9 +36,9 @@ export default async function ProjectsPage() {
                 </Link>
               </h2>
             </div>
-          </article>
+          </RevealItem>
         ))}
-      </div>
+      </RevealContainer>
     </PageLayout>
   );
 }

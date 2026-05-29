@@ -71,8 +71,9 @@
 :root {
   --font-sans: 'Visuelt', sans-serif;
   --font-heading: 'RGGarath', sans-serif;
-  --header-height: 5rem;
-  --footer-height: 5rem;
+  --header-height: 6rem;
+  --footer-height: 6rem;
+  --footer-height-nested: 3rem;
   --route-transition-duration: 420ms;
   --route-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -114,6 +115,15 @@
   :root {
     --header-height: 6rem;
     --footer-height: 6rem;
+    --footer-height-nested: 3rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  :root {
+    --header-height: 7rem;
+    --footer-height: 7rem;
+    --footer-height-nested: 3.5rem;
   }
 }
 
@@ -122,7 +132,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground text-base leading-relaxed md:text-lg;
+    @apply bg-background text-foreground text-base leading-relaxed md:text-lg xl:text-xl;
   }
   html {
     @apply font-sans font-light antialiased;
@@ -132,22 +142,25 @@
     @apply font-heading font-medium;
   }
   h1 {
-    @apply text-2xl leading-tight md:text-4xl mb-4;
+    @apply text-2xl leading-tight md:text-4xl xl:text-5xl mb-4;
   }
   h2 {
-    @apply text-lg leading-tight md:text-xl;
+    @apply text-lg leading-tight md:text-xl xl:text-2xl;
   }
   h3 {
-    @apply text-lg font-medium leading-tight md:text-xl;
+    @apply text-lg font-medium leading-tight md:text-xl xl:text-2xl;
   }
   h4 {
-    @apply text-lg leading-tight md:text-2xl;
+    @apply text-lg leading-tight md:text-2xl xl:text-3xl;
   }
   h5 {
-    @apply text-base leading-snug md:text-xl;
+    @apply text-base leading-snug md:text-xl xl:text-2xl;
   }
   h6 {
-    @apply text-sm leading-snug md:text-lg;
+    @apply text-sm leading-snug md:text-lg xl:text-xl;
+  }
+  small {
+    @apply text-xs leading-snug md:text-sm xl:text-base;
   }
   a {
     @apply transition-colors;
@@ -156,7 +169,7 @@
 
 @layer utilities {
   .prose {
-    @apply prose-invert prose-base max-w-none md:prose-lg;
+    @apply prose-invert prose-base max-w-none md:prose-lg xl:prose-xl;
     --tw-prose-invert-body: var(--foreground);
     --tw-prose-invert-headings: var(--foreground);
     --tw-prose-invert-lead: var(--foreground);
@@ -176,7 +189,7 @@
   }
 
   .site-container {
-    @apply w-full px-3 md:px-6;
+    @apply w-full px-3 md:px-6 xl:px-8;
   }
 
   .subtle-scrollbar {
@@ -205,11 +218,11 @@
   }
 
   .type-h1 {
-    @apply font-heading font-medium text-2xl leading-tight md:text-4xl;
+    @apply font-heading font-medium text-2xl leading-tight md:text-4xl xl:text-5xl;
   }
 
   .type-h2 {
-    @apply font-heading font-medium text-lg leading-tight md:text-xl;
+    @apply font-heading font-medium text-lg leading-tight md:text-xl xl:text-2xl;
   }
 
   .type-h3 {

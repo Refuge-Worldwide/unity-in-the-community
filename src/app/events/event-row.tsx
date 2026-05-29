@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Plus } from 'lucide-react';
 import { PlainRichText } from '@/components/rich-text';
 import { ArrowLink } from '@/components/arrow-link';
@@ -25,8 +26,26 @@ export function EventRow({ event }: { event: Event }) {
   const singleDay = isSameDay(startDate, endDate);
   const hasDescription = Boolean(event.description);
 
+  const handleRowClick = () => {
+    if (!hasDescription) return;
+    setExpanded((v) => !v);
+  };
+
   return (
-    <li className="grid gap-3 border-t border-foreground py-5 md:grid-cols-[1fr_2fr] md:gap-12 md:py-8">
+    <div
+      onClick={handleRowClick}
+      role={hasDescription ? 'button' : undefined}
+      tabIndex={hasDescription ? 0 : undefined}
+      aria-expanded={hasDescription ? expanded : undefined}
+      onKeyDown={(e) => {
+        if (!hasDescription) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setExpanded((v) => !v);
+        }
+      }}
+      className={`grid gap-3 border-t border-foreground py-5 md:grid-cols-[1fr_2fr] md:gap-12 md:py-8 ${hasDescription ? 'cursor-pointer md:cursor-auto' : ''}`}
+    >
       <div className="flex flex-wrap items-baseline gap-x-4 md:flex-col md:items-stretch md:gap-x-0">
         <h2>
           {singleDay
@@ -53,28 +72,52 @@ export function EventRow({ event }: { event: Event }) {
             {event.location && <p className="text-md text-muted-foreground">{event.location}</p>}
           </div>
           {hasDescription && (
-            <button
-              type="button"
-              aria-label={expanded ? 'Hide description' : 'Show description'}
-              aria-expanded={expanded}
-              onClick={() => setExpanded((v) => !v)}
-              className="text-muted-foreground transition-transform hover:text-foreground md:hidden"
+            <span
+              aria-hidden
+              className="text-muted-foreground transition-transform md:hidden"
               style={{ transform: expanded ? 'rotate(45deg)' : undefined }}
             >
               <Plus className="size-6" />
-            </button>
+            </span>
           )}
         </div>
-        <div className={`prose ${expanded ? '' : 'hidden'} md:block`}>
-          {event.description && <PlainRichText document={event.description} />}
-          {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
+        <div className="hidden md:block">
+          <div className="prose">
+            {event.description && <PlainRichText document={event.description} />}
+            {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
+          </div>
+          {event.ticketLink && (
+            <div className="mt-3">
+              <ArrowLink href={event.ticketLink} direction="right">
+                {event.linkText ?? 'More info'}
+              </ArrowLink>
+            </div>
+          )}
         </div>
-        {event.ticketLink && (
-          <ArrowLink href={event.ticketLink} direction="right">
-            {event.linkText ?? 'More info'}
-          </ArrowLink>
-        )}
+        <AnimatePresence initial={false}>
+          {expanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden md:hidden"
+            >
+              <div className="prose pt-1">
+                {event.description && <PlainRichText document={event.description} />}
+                {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
+              </div>
+              {event.ticketLink && (
+                <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+                  <ArrowLink href={event.ticketLink} direction="right">
+                    {event.linkText ?? 'More info'}
+                  </ArrowLink>
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </li>
+    </div>
   );
 }

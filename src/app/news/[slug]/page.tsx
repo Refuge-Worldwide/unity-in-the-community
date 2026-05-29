@@ -13,7 +13,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
   }
 
   return (
-    <section className="flex flex-col md:h-[calc(100dvh-var(--header-height)-var(--footer-height))]">
+    <section className="flex flex-col md:h-[calc(100dvh-var(--header-height)-var(--footer-height-nested))]">
       <BackLink href="/news">Back</BackLink>
       <div className="flex flex-col gap-8 md:min-h-0 md:flex-1 md:flex-row md:gap-12">
         <aside className="flex max-w-lg flex-col gap-6 md:w-1/3 md:shrink-0 md:gap-8 lg:w-2/5 xl:max-w-2xl 2xl:max-w-3xl">
@@ -27,13 +27,13 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
             {article.author && (
               <>
                 <p className="text-sm uppercase tracking-wider text-muted-foreground">Written by</p>
-                <p className="text-lg">{article.author}</p>
+                <p>{article.author}</p>
               </>
             )}
             <p className="hidden pt-2 text-sm uppercase tracking-wider text-muted-foreground md:block">
               Date
             </p>
-            <p className="hidden text-lg md:block">{formatNewsDate(article.date)}</p>
+            <p className="hidden md:block">{formatNewsDate(article.date)}</p>
           </div>
         </aside>
         <div className="md:flex md:h-full md:min-h-0 md:flex-1 md:border-l md:border-foreground md:pl-12">

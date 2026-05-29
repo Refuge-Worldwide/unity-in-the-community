@@ -197,13 +197,13 @@ export default function SupportUsPage() {
             onSelect={handleSelectMonthly}
           />
           <div className="flex flex-1 items-center w-full">
-            <p className="text-sm text-muted-foreground">
+            <small className="text-muted-foreground">
               You can cancel your monthly payment at any time by contacting{' '}
               <a href="mailto:support@example.com" className="underline">
                 support@example.com
               </a>
               .
-            </p>
+            </small>
           </div>
           <a
             href={monthlyPayment.selectedLink}

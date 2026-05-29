@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const FADE = '4rem';
+const FADE = '3rem';
 
 type MaskedScrollAreaProps = {
   children: React.ReactNode;
@@ -43,8 +43,12 @@ export function MaskedScrollArea({
 
   const maskImage = (() => {
     if (!fadeTop && !fadeBottom) return undefined;
-    const top = fadeTop ? `transparent 0, black ${FADE}` : `black 0`;
-    const bottom = fadeBottom ? `black calc(100% - ${FADE}), transparent 100%` : `black 100%`;
+    const top = fadeTop
+      ? `transparent 0, rgba(0,0,0,0.5) calc(${FADE} / 2), black ${FADE}`
+      : `black 0`;
+    const bottom = fadeBottom
+      ? `black calc(100% - ${FADE}), rgba(0,0,0,0.5) calc(100% - ${FADE} / 2), transparent 100%`
+      : `black 100%`;
     return `linear-gradient(to bottom, ${top}, ${bottom})`;
   })();
 

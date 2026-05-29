@@ -1,11 +1,24 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  type RefObject,
+} from 'react';
 import { usePathname } from 'next/navigation';
 
 type ScrollShellProps = {
   children: React.ReactNode;
 };
+
+const ScrollContainerContext = createContext<RefObject<HTMLDivElement | null> | null>(null);
+
+export function useScrollContainer() {
+  return useContext(ScrollContainerContext);
+}
 
 function isAncestor(parent: string, child: string): boolean {
   return child !== parent && child.startsWith(parent === '/' ? '/' : `${parent}/`);
@@ -51,15 +64,18 @@ export function ScrollShell({ children }: ScrollShellProps) {
   }, [pathname]);
 
   return (
-    <div
-      ref={containerRef}
-      className="subtle-scrollbar fixed z-10 flex h-dvh w-full overflow-y-auto overflow-x-hidden pt-[var(--header-height)]"
-      style={{
-        maskImage: 'linear-gradient(to bottom, transparent -5%, black var(--header-height))',
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent -5%, black var(--header-height))',
-      }}
-    >
-      {children}
-    </div>
+    <ScrollContainerContext.Provider value={containerRef}>
+      <div
+        ref={containerRef}
+        className="subtle-scrollbar fixed z-10 flex h-dvh w-full overflow-y-auto overflow-x-hidden pt-[var(--header-height)]"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent -5%, black var(--header-height))',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, transparent -5%, black var(--header-height))',
+        }}
+      >
+        {children}
+      </div>
+    </ScrollContainerContext.Provider>
   );
 }
