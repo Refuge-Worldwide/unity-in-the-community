@@ -1,7 +1,16 @@
+import { Children, isValidElement, type ReactNode } from 'react';
 import { documentToReactComponents, type Options } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, type Document } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import type { RichTextContent } from '@/lib/contentful/types';
+
+function unwrapParagraphs(children: ReactNode): ReactNode {
+  return Children.map(children, (child) =>
+    isValidElement<{ children: ReactNode }>(child) && child.type === 'p'
+      ? child.props.children
+      : child
+  );
+}
 
 function buildOptions(content: RichTextContent): Options {
   return {
@@ -20,6 +29,7 @@ function buildOptions(content: RichTextContent): Options {
           />
         );
       },
+      [BLOCKS.LIST_ITEM]: (_node, children) => <li>{unwrapParagraphs(children)}</li>,
     },
   };
 }

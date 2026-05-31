@@ -127,6 +127,18 @@
   }
 }
 
+@utility type-h1 {
+  @apply font-heading font-medium text-2xl leading-tight md:text-4xl xl:text-5xl;
+}
+
+@utility type-h2 {
+  @apply font-heading font-medium text-lg leading-tight md:text-xl xl:text-2xl;
+}
+
+@utility type-h3 {
+  @apply text-base font-medium leading-tight md:text-lg xl:text-xl;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -137,27 +149,14 @@
   html {
     @apply font-sans font-light antialiased;
   }
-  h1,
-  h2 {
-    @apply font-heading font-medium;
-  }
   h1 {
-    @apply text-2xl leading-tight md:text-4xl xl:text-5xl mb-4;
+    @apply type-h1 mb-4;
   }
   h2 {
-    @apply text-lg leading-tight md:text-xl xl:text-2xl;
+    @apply type-h2;
   }
   h3 {
-    @apply text-lg font-medium leading-tight md:text-xl xl:text-2xl;
-  }
-  h4 {
-    @apply text-lg leading-tight md:text-2xl xl:text-3xl;
-  }
-  h5 {
-    @apply text-base leading-snug md:text-xl xl:text-2xl;
-  }
-  h6 {
-    @apply text-sm leading-snug md:text-lg xl:text-xl;
+    @apply type-h3;
   }
   small {
     @apply text-xs leading-snug md:text-sm xl:text-base;
@@ -181,6 +180,16 @@
     --tw-prose-invert-quotes: var(--foreground);
     --tw-prose-invert-quote-borders: var(--foreground);
     --tw-prose-invert-captions: var(--muted-foreground);
+  }
+
+  .prose :where(h1):not(:where([class~='not-prose'] *)) {
+    @apply type-h1;
+  }
+  .prose :where(h2):not(:where([class~='not-prose'] *)) {
+    @apply type-h2;
+  }
+  .prose :where(h3):not(:where([class~='not-prose'] *)) {
+    @apply type-h3;
   }
 
   .site-bg-layer {
@@ -217,20 +226,8 @@
     background-color: rgba(255, 255, 255, 0.38);
   }
 
-  .type-h1 {
-    @apply font-heading font-medium text-2xl leading-tight md:text-4xl xl:text-5xl;
-  }
-
-  .type-h2 {
-    @apply font-heading font-medium text-lg leading-tight md:text-xl xl:text-2xl;
-  }
-
-  .type-h3 {
-    @apply text-base font-medium leading-tight md:text-lg;
-  }
-
   .type-body {
-    @apply text-base leading-relaxed md:text-lg;
+    @apply text-base leading-relaxed md:text-lg xl:text-xl;
   }
 }
 

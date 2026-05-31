@@ -1,22 +1,18 @@
-import { Faker, en } from '@faker-js/faker';
 import { PageLayout } from '@/components/page-layout';
+import { RichText } from '@/components/rich-text';
 import { buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { getAboutContent } from '@/lib/contentful/content/about';
 import { cn } from '@/lib/utils';
 
-const faker = new Faker({ locale: [en] });
-faker.seed(7);
+export default async function AboutPage() {
+  const content = await getAboutContent();
 
-const bodyParagraphs = Array.from({ length: 6 }, () => faker.lorem.paragraph({ min: 4, max: 8 }));
-
-export default function AboutPage() {
   return (
     <PageLayout title="About">
       <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_26rem] md:gap-16">
-        <article className="space-y-6 text-justify hyphens-auto">
-          {bodyParagraphs.map((para, idx) => (
-            <p key={idx}>{para}</p>
-          ))}
+        <article className="prose text-justify hyphens-auto">
+          {content && <RichText content={content} />}
         </article>
 
         <Card className="self-start">
