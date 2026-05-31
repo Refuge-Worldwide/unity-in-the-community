@@ -142,7 +142,7 @@ export function Header() {
           ></SheetTrigger>
           <SheetContent side="right" className="w-[80vw] max-w-xs">
             <SheetHeader></SheetHeader>
-            <div className="type-h1 text-lg flex h-full flex-col gap-4 px-4 pb-6">
+            <div className="type-h1 flex h-full flex-col gap-4 px-4 pb-6">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.href}
