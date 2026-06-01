@@ -2,8 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
-function getBackgroundImage(pathname: string): string {
-  if (pathname === '/') return '/backgrounds/home.svg';
+function getBackgroundImage(pathname: string): string | null {
+  if (pathname === '/') return null;
   if (pathname.startsWith('/about')) return '/backgrounds/about.svg';
   if (pathname.startsWith('/events')) return '/backgrounds/events.svg';
   if (pathname.startsWith('/news')) return '/backgrounds/news.svg';
@@ -15,6 +15,7 @@ function getBackgroundImage(pathname: string): string {
 export function RouteBackground() {
   const pathname = usePathname();
   const image = getBackgroundImage(pathname);
+  if (!image) return null;
 
   return (
     <div

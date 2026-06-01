@@ -34,7 +34,7 @@ export function ProjectCardMobile({
         className={`absolute inset-x-0 bottom-0 space-y-1 p-2 ${alignRight ? 'text-right' : ''}`}
       >
         {project.timeframe && (
-          <small className="tracking-wider text-muted-foreground">{project.timeframe}</small>
+          <p className="tracking-wider text-muted-foreground">{project.timeframe}</p>
         )}
         <h2 className="text-balance">{project.title}</h2>
       </div>

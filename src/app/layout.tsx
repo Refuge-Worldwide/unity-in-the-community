@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { HomeBackground } from '@/components/home-background';
 import { RouteBackground } from '@/components/route-background';
 import { RouteContentTransition } from '@/components/route-content-transition';
 import { ScrollShell } from '@/components/scroll-shell';
+import { getHomeContent } from '@/lib/contentful/content/home';
 import './globals.css';
 
 const BACKGROUND_IMAGES = [
@@ -18,17 +20,20 @@ const BACKGROUND_IMAGES = [
 
 export const metadata: Metadata = {
   title: 'Unity in the Community',
-  description: 'A non-profit organization by Refuge Worldwide', // todo: TBD
+  description: "Refuge Worldwide's educational platform.", // todo: TBD
   icons: {
     icon: '/UNITY IN THE COMMUNITY.svg',
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const home = await getHomeContent();
+  const homePhotos = home?.photos ?? [];
+
   return (
     <html lang="en">
       <head>
@@ -38,6 +43,7 @@ export default function RootLayout({
       </head>
       <body className="relative isolate flex min-h-dvh bg-background">
         <RouteBackground />
+        <HomeBackground photos={homePhotos} />
         <div
           className="site-container fixed top-0 left-0 right-0 z-50 h-[var(--header-height)]"
           style={{ viewTransitionName: 'site-header' }}

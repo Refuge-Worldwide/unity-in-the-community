@@ -48,12 +48,12 @@ export default async function AboutPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          {/* <section className="space-y-3">
             <h2>Newsletter</h2>
             <a href="#" className={cn(buttonVariants({ variant: 'cta' }), 'w-full px-3 py-2')}>
               Subscribe to our newsletter
             </a>
-          </section>
+          </section> */}
         </Card>
       </div>
     </PageLayout>

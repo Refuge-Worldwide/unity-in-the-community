@@ -144,7 +144,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground text-base leading-relaxed md:text-lg xl:text-xl;
+    @apply bg-background text-foreground text-base leading-normal md:text-lg xl:text-xl;
   }
   html {
     @apply font-sans font-light antialiased;
@@ -191,6 +191,9 @@
   .prose :where(h3):not(:where([class~='not-prose'] *)) {
     @apply type-h3;
   }
+  .prose > *:first-child {
+    margin-top: 0;
+  }
 
   .site-bg-layer {
     @apply fixed inset-0 z-0 bg-cover bg-center bg-no-repeat;
@@ -227,7 +230,7 @@
   }
 
   .type-body {
-    @apply text-base leading-relaxed md:text-lg xl:text-xl;
+    @apply text-base leading-normal md:text-lg xl:text-xl;
   }
 }
 

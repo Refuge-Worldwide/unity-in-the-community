@@ -8,9 +8,9 @@ export default async function SupportUsPage() {
 
   return (
     <PageLayout title="Support Us">
-      {data?.content && (
+      {data?.contentTop && (
         <div className="prose">
-          <RichText content={data.content} />
+          <RichText content={data.contentTop} />
         </div>
       )}
 
@@ -29,6 +29,12 @@ export default async function SupportUsPage() {
           )
         }
       />
+
+      {data?.contentBottom && (
+        <div className="prose">
+          <RichText content={data.contentBottom} />
+        </div>
+      )}
     </PageLayout>
   );
 }

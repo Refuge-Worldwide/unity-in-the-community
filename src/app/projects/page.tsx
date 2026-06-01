@@ -28,7 +28,7 @@ export default async function ProjectsPage() {
             <ProjectCardDesktopImage project={project} />
             <div className="hidden md:block md:space-y-1">
               {project.timeframe && (
-                <small className="tracking-wider text-muted-foreground">{project.timeframe}</small>
+                <p className="tracking-wider text-muted-foreground">{project.timeframe}</p>
               )}
               <h2>
                 <Link href={`/projects/${project.slug}`} transitionTypes={['detail-open']}>

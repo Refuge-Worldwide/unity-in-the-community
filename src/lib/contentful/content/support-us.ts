@@ -6,7 +6,8 @@ import type { RichTextContent } from '../types';
 export const SUPPORT_US_TAG = 'support-us';
 
 export type SupportUsContent = {
-  content: RichTextContent | null;
+  contentTop: RichTextContent | null;
+  contentBottom: RichTextContent | null;
   oneTimePaymentDescription: string | null;
   monthlySupportDescription: string | null;
   monthlySupportDisclaimer: RichTextContent | null;
@@ -15,6 +16,7 @@ export type SupportUsContent = {
 type RawSupportUsResponse = {
   pageSupportUsCollection: {
     items: Array<{
+      contentTop: RawRichTextField;
       content: RawRichTextField;
       oneTimePaymentDescription: string | null;
       monthlySupportDescription: string | null;
@@ -27,6 +29,9 @@ const SUPPORT_US_QUERY = /* GraphQL */ `
   query SupportUs($preview: Boolean) {
     pageSupportUsCollection(preview: $preview, limit: 1) {
       items {
+        contentTop {
+          ${RICH_TEXT_FIELDS}
+        }
         content {
           ${RICH_TEXT_FIELDS}
         }
@@ -49,7 +54,8 @@ export async function getSupportUsContent(): Promise<SupportUsContent | null> {
   const raw = data.pageSupportUsCollection.items[0];
   if (!raw) return null;
   return {
-    content: toRichText(raw.content),
+    contentTop: toRichText(raw.contentTop),
+    contentBottom: toRichText(raw.content),
     oneTimePaymentDescription: raw.oneTimePaymentDescription,
     monthlySupportDescription: raw.monthlySupportDescription,
     monthlySupportDisclaimer: toRichText(raw.monthySupportDisclaimer),

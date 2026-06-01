@@ -38,7 +38,9 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         </aside>
         <div className="md:flex md:h-full md:min-h-0 md:flex-1 md:border-l md:border-foreground md:pl-12">
           <MaskedScrollArea className="subtle-scrollbar prose text-justify hyphens-auto md:h-full md:overflow-y-auto md:pr-12">
-            {article.subtitle && <p className="text-lg font-bold md:text-xl">{article.subtitle}</p>}
+            {article.subtitle && (
+              <div className="text-lg font-bold md:text-xl">{article.subtitle}</div>
+            )}
             {article.content && <RichText content={article.content} />}
           </MaskedScrollArea>
         </div>

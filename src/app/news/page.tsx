@@ -39,7 +39,7 @@ export default async function NewsPage() {
           <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)] md:block" />
         </Link>
         <RevealItem as="div" className="space-y-1 md:space-y-3">
-          <small className="text-muted-foreground">{formatNewsDate(featured.date)}</small>
+          <p className="text-muted-foreground">{formatNewsDate(featured.date)}</p>
           <h3 className="md:text-3xl">
             <Link href={`/news/${featured.slug}`} transitionTypes={['detail-open']}>
               {featured.title}
@@ -80,7 +80,7 @@ export default async function NewsPage() {
               <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)] md:block" />
             </Link>
             <div className="space-y-1">
-              <small className="text-muted-foreground">{formatNewsDate(item.date)}</small>
+              <p className="text-muted-foreground">{formatNewsDate(item.date)}</p>
               <h3>
                 <Link href={`/news/${item.slug}`} transitionTypes={['detail-open']}>
                   {item.title}

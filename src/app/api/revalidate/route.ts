@@ -2,6 +2,7 @@ import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { ABOUT_TAG } from '@/lib/contentful/content/about';
 import { EVENTS_TAG } from '@/lib/contentful/content/events';
+import { HOME_TAG } from '@/lib/contentful/content/home';
 import { NEWS_TAG } from '@/lib/contentful/content/news';
 import { PROJECTS_TAG } from '@/lib/contentful/content/projects';
 import { SUPPORT_US_TAG } from '@/lib/contentful/content/support-us';
@@ -12,6 +13,7 @@ const CONTENT_TYPE_TAGS: Record<string, string> = {
   newsArticle: NEWS_TAG,
   pageAbout: ABOUT_TAG,
   pageSupportUs: SUPPORT_US_TAG,
+  pageHome: HOME_TAG,
 };
 
 export async function POST(req: NextRequest) {
