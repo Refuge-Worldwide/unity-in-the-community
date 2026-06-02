@@ -18,6 +18,7 @@ function pickBackground(pathname: string, backgrounds: PageBackgrounds | null): 
 export function RouteBackground({ backgrounds }: { backgrounds: PageBackgrounds | null }) {
   const pathname = usePathname();
   const image = pickBackground(pathname, backgrounds);
+
   if (!image) return null;
 
   return (
@@ -36,6 +37,17 @@ export function RouteBackground({ backgrounds }: { backgrounds: PageBackgrounds 
         aria-hidden
         className="site-bg-layer bg-black/60"
         style={{ viewTransitionName: 'route-background-overlay' }}
+      />
+      <div
+        aria-hidden
+        className="site-bg-layer opacity-30 mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+          backgroundSize: '400px 400px',
+          backgroundRepeat: 'repeat',
+          viewTransitionName: 'route-background-grain',
+        }}
       />
     </>
   );
