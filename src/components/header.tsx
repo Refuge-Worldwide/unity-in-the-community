@@ -97,7 +97,7 @@ export function Header() {
       <nav className="flex h-full items-start justify-between">
         <Link href="/">
           <Image
-            src="/UNITY IN THE COMMUNITY.svg"
+            src="/unity-in-the-community.svg"
             alt="Logo"
             width={2993}
             height={905}

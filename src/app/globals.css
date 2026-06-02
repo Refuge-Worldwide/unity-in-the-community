@@ -194,6 +194,9 @@
   .prose > *:first-child {
     margin-top: 0;
   }
+  .prose > *:last-child {
+    margin-bottom: 0;
+  }
 
   .site-bg-layer {
     @apply fixed inset-0 z-0 bg-cover bg-center bg-no-repeat;

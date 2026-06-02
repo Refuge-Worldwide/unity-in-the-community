@@ -10,7 +10,7 @@ export default async function AboutPage() {
 
   return (
     <PageLayout title="About">
-      <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_26rem] md:gap-16 xl:grid-cols-[minmax(0,1fr)_32rem] 2xl:grid-cols-[minmax(0,1fr)_42rem]">
+      <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_26rem] md:gap-x-10 xl:grid-cols-[minmax(0,1fr)_28rem] 2xl:grid-cols-[minmax(0,1fr)_42rem]">
         <article className="prose text-justify hyphens-auto">
           {content && <RichText content={content} />}
         </article>

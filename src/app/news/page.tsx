@@ -46,7 +46,7 @@ export default async function NewsPage() {
             </Link>
           </h3>
           {featured.subtitle && <p>{featured.subtitle}</p>}
-          <div className="hidden md:block">
+          <div className="hidden md:block md:pt-4">
             <ArrowLink
               href={`/news/${featured.slug}`}
               transitionTypes={['detail-open']}

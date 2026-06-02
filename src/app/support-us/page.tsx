@@ -8,33 +8,42 @@ export default async function SupportUsPage() {
 
   return (
     <PageLayout title="Support Us">
-      {data?.contentTop && (
-        <div className="prose">
-          <RichText content={data.contentTop} />
-        </div>
-      )}
+      <div className="grid gap-12 xl:grid-cols-[minmax(0,36rem)_1fr] xl:gap-x-10">
+        {data?.contentTop && (
+          <div className="prose xl:hidden">
+            <RichText content={data.contentTop} />
+          </div>
+        )}
 
-      <SupportUsForm
-        oneTimeDescription={
-          data?.oneTimePaymentDescription && <p>{data.oneTimePaymentDescription}</p>
-        }
-        monthlyDescription={
-          data?.monthlySupportDescription && <p>{data.monthlySupportDescription}</p>
-        }
-        monthlyDisclaimer={
-          data?.monthlySupportDisclaimer && (
-            <small className="text-muted-foreground">
-              <RichText content={data.monthlySupportDisclaimer} />
-            </small>
-          )
-        }
-      />
-
-      {data?.contentBottom && (
-        <div className="prose">
-          <RichText content={data.contentBottom} />
+        <div>
+          <SupportUsForm
+            oneTimeDescription={
+              data?.oneTimePaymentDescription && <p>{data.oneTimePaymentDescription}</p>
+            }
+            monthlyDescription={
+              data?.monthlySupportDescription && <p>{data.monthlySupportDescription}</p>
+            }
+            monthlyDisclaimer={
+              data?.monthlySupportDisclaimer && (
+                <small className="text-muted-foreground">
+                  <RichText content={data.monthlySupportDisclaimer} />
+                </small>
+              )
+            }
+          />
         </div>
-      )}
+
+        <div className="prose hidden xl:block">
+          {data?.contentTop && <RichText content={data.contentTop} />}
+          {data?.contentBottom && <RichText content={data.contentBottom} />}
+        </div>
+
+        {data?.contentBottom && (
+          <div className="prose xl:hidden">
+            <RichText content={data.contentBottom} />
+          </div>
+        )}
+      </div>
     </PageLayout>
   );
 }

@@ -44,7 +44,7 @@ export function EventRow({ event }: { event: Event }) {
           setExpanded((v) => !v);
         }
       }}
-      className={`grid gap-3 border-t border-foreground py-5 md:grid-cols-[1fr_2fr] md:gap-12 md:py-8 ${hasDescription ? 'cursor-pointer md:cursor-auto' : ''}`}
+      className={`grid gap-3 border-t border-foreground py-4 md:grid-cols-[1fr_2fr] md:gap-12 md:py-7 ${hasDescription ? 'cursor-pointer md:cursor-auto' : ''}`}
     >
       <div className="flex flex-wrap items-baseline gap-x-4 md:flex-col md:items-stretch md:gap-x-0">
         <h2>

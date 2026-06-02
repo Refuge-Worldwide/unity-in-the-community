@@ -16,7 +16,7 @@ export default async function ProjectsPage() {
 
   return (
     <PageLayout title="Projects">
-      <RevealContainer className="grid content-start items-start gap-2 md:grid-cols-12 md:gap-6">
+      <RevealContainer className="grid content-start items-start gap-2 md:grid-cols-12 md:gap-8">
         {projects.map((project, index) => (
           <RevealItem
             key={project.slug}

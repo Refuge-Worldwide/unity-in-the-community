@@ -151,8 +151,8 @@ export function SupportUsForm({
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
-      <Card className="h-full">
+    <div className="grid gap-6 self-start md:grid-cols-2 xl:grid-cols-1">
+      <Card>
         <div className="space-y-2">
           <h2>{oneTimePaymentOption.title}</h2>
           {oneTimeDescription}

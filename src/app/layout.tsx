@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Unity in the Community',
   description: "Refuge Worldwide's educational platform.", // todo: TBD
   icons: {
-    icon: '/UNITY IN THE COMMUNITY.svg',
+    icon: '/unity-in-the-community.svg',
   },
 };
 
