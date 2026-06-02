@@ -3,8 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ABOUT_TAG } from '@/lib/contentful/content/about';
 import { EVENTS_TAG } from '@/lib/contentful/content/events';
 import { HOME_TAG } from '@/lib/contentful/content/home';
+import { IMPRINT_TAG } from '@/lib/contentful/content/imprint';
 import { NEWS_TAG } from '@/lib/contentful/content/news';
 import { PAGE_BACKGROUNDS_TAG } from '@/lib/contentful/content/page-backgrounds';
+import { PRIVACY_POLICY_TAG } from '@/lib/contentful/content/privacy-policy';
 import { PROJECTS_TAG } from '@/lib/contentful/content/projects';
 import { SUPPORT_US_TAG } from '@/lib/contentful/content/support-us';
 
@@ -16,6 +18,8 @@ const CONTENT_TYPE_TAGS: Record<string, string> = {
   pageSupportUs: SUPPORT_US_TAG,
   pageHome: HOME_TAG,
   pageBackgrounds: PAGE_BACKGROUNDS_TAG,
+  pageImprint: IMPRINT_TAG,
+  pagePrivacyPolicy: PRIVACY_POLICY_TAG,
 };
 
 export async function POST(req: NextRequest) {

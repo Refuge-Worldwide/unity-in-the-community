@@ -1,4 +1,4 @@
-import { Children, isValidElement, type ReactNode } from 'react';
+import { Children, Fragment, isValidElement, type ReactNode } from 'react';
 import { documentToReactComponents, type Options } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, type Document } from '@contentful/rich-text-types';
 import Image from 'next/image';
@@ -12,8 +12,19 @@ function unwrapParagraphs(children: ReactNode): ReactNode {
   );
 }
 
+function renderTextWithBreaks(text: string): ReactNode {
+  const parts = text.split('\n');
+  return parts.map((part, i) => (
+    <Fragment key={i}>
+      {part}
+      {i < parts.length - 1 && <br />}
+    </Fragment>
+  ));
+}
+
 function buildOptions(content: RichTextContent): Options {
   return {
+    renderText: renderTextWithBreaks,
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const id = node.data.target?.sys?.id as string | undefined;
@@ -39,5 +50,5 @@ export function RichText({ content }: { content: RichTextContent }) {
 }
 
 export function PlainRichText({ document }: { document: Document }) {
-  return <>{documentToReactComponents(document)}</>;
+  return <>{documentToReactComponents(document, { renderText: renderTextWithBreaks })}</>;
 }
