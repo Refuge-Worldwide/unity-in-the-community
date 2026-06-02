@@ -30,16 +30,16 @@ export function RouteContentTransition({ children }: RouteContentTransitionProps
         'nav-back': 'nav-back',
         'detail-open': 'detail-open',
         'detail-close': 'detail-close',
-        default: 'none',
+        default: 'auto',
       }}
       exit={{
         'nav-forward': 'nav-forward',
         'nav-back': 'nav-back',
         'detail-open': 'detail-open',
         'detail-close': 'detail-close',
-        default: 'none',
+        default: 'auto',
       }}
-      default="none"
+      default="auto"
     >
       {children}
     </ViewTransition>
