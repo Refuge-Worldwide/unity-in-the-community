@@ -11,7 +11,7 @@ const oneTimePaymentOption = {
   title: 'One-Time Donation',
   fixedAmounts: [
     { value: '5', link: 'https://buy.stripe.com/eVq5kC316flH4A86h99R601' },
-    { value: '10', link: 'https://buy.stripe.com/28E9AS7hm7Tfc2A20T9R602' },
+    { value: '10', link: 'https://buy.stripe.com/5kQeVc3163CZ3w4gVN9R603' },
   ],
   customAmountLink: 'https://buy.stripe.com/bJe4gygRW8XjfeMeNF9R604',
 };
@@ -20,7 +20,7 @@ const monthlyPaymentOption = {
   title: 'Monthly Support',
   fixedAmounts: [
     { value: '5', link: 'https://buy.stripe.com/dRmbJ07hmc9v4A88ph9R600' },
-    { value: '10', link: 'https://buy.stripe.com/5kQeVc3163CZ3w4gVN9R603' },
+    { value: '10', link: 'https://buy.stripe.com/8x2aEW1X28Xj5Ec5d59R605' },
   ],
 };
 
