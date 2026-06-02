@@ -4,6 +4,7 @@ import { ABOUT_TAG } from '@/lib/contentful/content/about';
 import { EVENTS_TAG } from '@/lib/contentful/content/events';
 import { HOME_TAG } from '@/lib/contentful/content/home';
 import { NEWS_TAG } from '@/lib/contentful/content/news';
+import { PAGE_BACKGROUNDS_TAG } from '@/lib/contentful/content/page-backgrounds';
 import { PROJECTS_TAG } from '@/lib/contentful/content/projects';
 import { SUPPORT_US_TAG } from '@/lib/contentful/content/support-us';
 
@@ -14,6 +15,7 @@ const CONTENT_TYPE_TAGS: Record<string, string> = {
   pageAbout: ABOUT_TAG,
   pageSupportUs: SUPPORT_US_TAG,
   pageHome: HOME_TAG,
+  pageBackgrounds: PAGE_BACKGROUNDS_TAG,
 };
 
 export async function POST(req: NextRequest) {

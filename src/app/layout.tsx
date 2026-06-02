@@ -5,18 +5,8 @@ import { HomeBackground } from '@/components/home-background';
 import { RouteBackground } from '@/components/route-background';
 import { RouteContentTransition } from '@/components/route-content-transition';
 import { ScrollShell } from '@/components/scroll-shell';
-import { getHomeContent } from '@/lib/contentful/content/home';
+import { getPageBackgrounds } from '@/lib/contentful/content/page-backgrounds';
 import './globals.css';
-
-const BACKGROUND_IMAGES = [
-  '/backgrounds/home.svg',
-  '/backgrounds/about.svg',
-  '/backgrounds/events.svg',
-  '/backgrounds/news.svg',
-  '/backgrounds/projects.svg',
-  '/backgrounds/default.svg',
-  '/backgrounds/support-us.svg',
-];
 
 export const metadata: Metadata = {
   title: 'Unity in the Community',
@@ -31,18 +21,32 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const home = await getHomeContent();
-  const homePhotos = home?.photos ?? [];
+  const backgrounds = await getPageBackgrounds();
+  const homePhotos = backgrounds?.home ?? [];
+  const preloadUrls = Array.from(
+    new Set(
+      [
+        ...homePhotos,
+        backgrounds?.about,
+        backgrounds?.events,
+        backgrounds?.news,
+        backgrounds?.projects,
+        backgrounds?.supportUs,
+        backgrounds?.imprint,
+        backgrounds?.privacyPolicy,
+      ].filter((url): url is string => Boolean(url))
+    )
+  );
 
   return (
     <html lang="en">
       <head>
-        {BACKGROUND_IMAGES.map((href) => (
+        {preloadUrls.map((href) => (
           <link key={href} rel="preload" as="image" href={href} />
         ))}
       </head>
       <body className="relative isolate flex min-h-dvh bg-background">
-        <RouteBackground />
+        <RouteBackground backgrounds={backgrounds} />
         <HomeBackground photos={homePhotos} />
         <div
           className="site-container fixed top-0 left-0 right-0 z-50 h-[var(--header-height)]"

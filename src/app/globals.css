@@ -280,6 +280,14 @@
   animation: none;
 }
 
+::view-transition-old(route-background),
+::view-transition-new(route-background),
+::view-transition-old(route-background-overlay),
+::view-transition-new(route-background-overlay) {
+  animation-duration: 500ms;
+  animation-timing-function: var(--route-transition-ease);
+}
+
 ::view-transition-group(site-header) {
   animation: none;
   z-index: 999;

@@ -32,8 +32,7 @@ export function RevealContainer({
   return (
     <Component
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      animate="visible"
       variants={{ visible: { transition: { staggerChildren: staggerSeconds } } }}
       className={className}
     >

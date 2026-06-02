@@ -8,7 +8,7 @@ const FADE_MS = 1200;
 
 export function HomeBackground({ photos }: { photos: string[] }) {
   const pathname = usePathname();
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => Math.floor(Math.random() * photos.length));
 
   useEffect(() => {
     if (photos.length < 2) return;
@@ -37,7 +37,7 @@ export function HomeBackground({ photos }: { photos: string[] }) {
       </div>
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-[calc(var(--header-height)+2rem)] bg-gradient-to-b from-black/50 to-transparent"
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-[calc(var(--header-height)+2rem)] bg-gradient-to-b from-black/70 to-transparent"
       />
     </>
   );

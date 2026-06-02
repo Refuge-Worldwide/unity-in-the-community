@@ -3,13 +3,13 @@ import { RichText } from '@/components/rich-text';
 import { getHomeContent } from '@/lib/contentful/content/home';
 
 export default async function Home() {
-  const data = await getHomeContent();
+  const content = await getHomeContent();
 
   return (
     <PageLayout title="Unity in the Community" variant="hero">
-      {data?.content && (
-        <div className="prose max-w-xl">
-          <RichText content={data.content} />
+      {content && (
+        <div className="prose ml-12 md:ml-0 md:max-w-xl">
+          <RichText content={content} />
         </div>
       )}
     </PageLayout>
