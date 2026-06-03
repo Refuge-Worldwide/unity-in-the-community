@@ -74,6 +74,7 @@
   --header-height: 5.5rem;
   --footer-height: 6rem;
   --footer-height-nested: 3rem;
+  --banner-height: 0px;
   --route-transition-duration: 420ms;
   --route-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -156,6 +157,9 @@
   }
   body {
     @apply bg-background text-foreground type-body;
+  }
+  body[data-preview='true'] {
+    --banner-height: 2.25rem;
   }
   html {
     @apply font-sans font-light antialiased;

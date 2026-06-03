@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { draftMode } from 'next/headers';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { HomeBackground } from '@/components/home-background';
+import { PreviewBanner } from '@/components/preview-banner';
 import { RouteBackground } from '@/components/route-background';
 import { RouteContentTransition } from '@/components/route-content-transition';
 import { ScrollShell } from '@/components/scroll-shell';
@@ -22,6 +24,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const backgrounds = await getPageBackgrounds();
+  const { isEnabled: previewEnabled } = await draftMode();
   const homePhotos = backgrounds?.home ?? [];
   const preloadUrls = Array.from(
     new Set(
@@ -45,11 +48,15 @@ export default async function RootLayout({
           <link key={href} rel="preload" as="image" href={href} />
         ))}
       </head>
-      <body className="relative isolate flex min-h-dvh bg-background">
+      <body
+        data-preview={previewEnabled || undefined}
+        className="relative isolate flex min-h-dvh bg-background"
+      >
+        <PreviewBanner />
         <RouteBackground backgrounds={backgrounds} />
         <HomeBackground photos={homePhotos} />
         <div
-          className="site-container fixed top-0 left-0 right-0 z-50 h-[var(--header-height)]"
+          className="site-container fixed left-0 right-0 z-50 h-[var(--header-height)] top-[var(--banner-height)]"
           style={{ viewTransitionName: 'site-header' }}
         >
           <Header />

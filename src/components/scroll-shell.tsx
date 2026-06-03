@@ -53,7 +53,7 @@ export function ScrollShell({ children }: ScrollShellProps) {
   return (
     <div
       ref={containerRef}
-      className="subtle-scrollbar fixed z-10 flex h-dvh w-full overflow-y-auto overflow-x-hidden pt-[var(--header-height)]"
+      className="subtle-scrollbar fixed z-10 flex w-full overflow-y-auto overflow-x-hidden top-[var(--banner-height)] h-[calc(100dvh-var(--banner-height))] pt-[var(--header-height)]"
       style={{
         maskImage: 'linear-gradient(to bottom, transparent -5%, black var(--header-height))',
         WebkitMaskImage: 'linear-gradient(to bottom, transparent -5%, black var(--header-height))',
