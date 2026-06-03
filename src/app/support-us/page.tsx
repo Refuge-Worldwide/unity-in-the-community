@@ -8,7 +8,7 @@ export default async function SupportUsPage() {
 
   return (
     <PageLayout title="Support Us">
-      <div className="grid gap-12 xl:grid-cols-[minmax(0,36rem)_1fr] xl:gap-x-10">
+      <div className="grid gap-6 md:gap-10 xl:grid-cols-[minmax(0,36rem)_1fr] xl:gap-12 xl:gap-x-10">
         {data?.contentTop && (
           <div className="prose xl:hidden">
             <RichText content={data.contentTop} />

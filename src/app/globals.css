@@ -71,7 +71,7 @@
 :root {
   --font-sans: 'Visuelt', sans-serif;
   --font-heading: 'RGGarath', sans-serif;
-  --header-height: 6rem;
+  --header-height: 5.5rem;
   --footer-height: 6rem;
   --footer-height-nested: 3rem;
   --route-transition-duration: 420ms;
@@ -132,11 +132,22 @@
 }
 
 @utility type-h2 {
-  @apply font-heading font-medium text-lg leading-tight md:text-xl xl:text-2xl;
+  @apply font-heading font-medium text-lg leading-tight md:text-2xl xl:text-3xl;
 }
 
 @utility type-h3 {
-  @apply text-base font-medium leading-tight md:text-lg xl:text-xl;
+  @apply text-base font-medium leading-tight md:text-2xl;
+}
+
+@utility type-body {
+  @apply text-base leading-normal md:text-2xl;
+}
+
+@utility hide-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer base {
@@ -144,7 +155,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground text-base leading-normal md:text-lg xl:text-xl;
+    @apply bg-background text-foreground type-body;
   }
   html {
     @apply font-sans font-light antialiased;
@@ -168,7 +179,7 @@
 
 @layer utilities {
   .prose {
-    @apply prose-invert prose-base max-w-none md:prose-lg xl:prose-xl;
+    @apply prose-invert type-body max-w-none;
     --tw-prose-invert-body: var(--foreground);
     --tw-prose-invert-headings: var(--foreground);
     --tw-prose-invert-lead: var(--foreground);
@@ -230,10 +241,6 @@
 
   .subtle-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.38);
-  }
-
-  .type-body {
-    @apply text-base leading-normal md:text-lg xl:text-xl;
   }
 }
 

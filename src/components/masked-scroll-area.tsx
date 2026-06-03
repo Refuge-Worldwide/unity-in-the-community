@@ -19,7 +19,7 @@ export function MaskedScrollArea({
 }: MaskedScrollAreaProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [fadeTop, setFadeTop] = useState(false);
-  const [fadeBottom, setFadeBottom] = useState(false);
+  const [fadeBottom, setFadeBottom] = useState(true);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -55,7 +55,7 @@ export function MaskedScrollArea({
   const maskStyle = maskImage ? { maskImage, WebkitMaskImage: maskImage } : undefined;
 
   return (
-    <div className="relative md:h-full md:min-h-0 md:flex-1">
+    <div className="relative md:h-full md:min-h-0 md:w-fit md:flex-1">
       <div ref={scrollRef} className={className} style={maskStyle}>
         {children}
       </div>

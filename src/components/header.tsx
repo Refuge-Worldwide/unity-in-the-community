@@ -106,7 +106,7 @@ export function Header() {
           />
         </Link>
 
-        <div className="type-h2 ml-auto hidden flex-wrap items-baseline gap-4 md:flex">
+        <div className="type-h3 ml-auto hidden flex-wrap items-baseline gap-4 md:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}
