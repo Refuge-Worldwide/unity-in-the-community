@@ -15,6 +15,9 @@ export async function contentfulFetch<TData>({
   tags,
 }: FetchOptions): Promise<TData> {
   const { isEnabled: preview } = await draftMode();
+  if (preview && !space.previewToken) {
+    throw new Error('Draft mode is enabled but CONTENTFUL_*_PREVIEW_TOKEN is not configured.');
+  }
   const token = preview ? space.previewToken : space.deliveryToken;
 
   const url = `https://graphql.contentful.com/content/v1/spaces/${space.spaceId}/environments/${space.environment}`;

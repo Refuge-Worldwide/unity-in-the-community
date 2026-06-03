@@ -2,7 +2,7 @@ export type SpaceConfig = {
   spaceId: string;
   environment: string;
   deliveryToken: string;
-  previewToken: string;
+  previewToken: string | undefined;
 };
 
 function readSpace(prefix: 'EVENTS' | 'MAIN'): SpaceConfig {
@@ -11,7 +11,7 @@ function readSpace(prefix: 'EVENTS' | 'MAIN'): SpaceConfig {
   const deliveryToken = process.env[`CONTENTFUL_${prefix}_DELIVERY_TOKEN`];
   const previewToken = process.env[`CONTENTFUL_${prefix}_PREVIEW_TOKEN`];
 
-  if (!spaceId || !environment || !deliveryToken || !previewToken) {
+  if (!spaceId || !environment || !deliveryToken) {
     throw new Error(
       `Missing Contentful env vars for space "${prefix}". Check .env.local against .env.example.`
     );
