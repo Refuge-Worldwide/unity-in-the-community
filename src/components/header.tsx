@@ -80,7 +80,7 @@ function NavCtaLink({
       data-active={isActive || undefined}
       className={cn(
         buttonVariants({ variant: 'cta' }),
-        variant === 'desktop' ? '-my-px px-2' : 'mt-auto w-full px-3'
+        variant === 'desktop' ? '-my-px px-2' : 'mt-auto h-auto w-full px-3'
       )}
     >
       {children}

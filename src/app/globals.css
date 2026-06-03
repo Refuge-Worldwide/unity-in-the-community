@@ -129,19 +129,19 @@
 }
 
 @utility type-h1 {
-  @apply font-heading font-medium text-2xl leading-tight md:text-4xl xl:text-5xl;
+  @apply font-heading font-medium text-3xl leading-tight md:text-4xl xl:text-5xl;
 }
 
 @utility type-h2 {
-  @apply font-heading font-medium text-lg leading-tight md:text-2xl xl:text-3xl;
+  @apply font-heading font-medium text-xl leading-tight md:text-2xl xl:text-3xl;
 }
 
 @utility type-h3 {
-  @apply text-base font-medium leading-tight md:text-2xl;
+  @apply text-lg font-medium leading-tight md:text-2xl;
 }
 
 @utility type-body {
-  @apply text-base leading-normal md:text-2xl;
+  @apply text-lg leading-normal md:text-2xl;
 }
 
 @utility hide-scrollbar {
