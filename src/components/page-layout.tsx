@@ -1,0 +1,23 @@
+import { cn } from '@/lib/utils';
+
+type PageVariant = 'default' | 'hero';
+
+type PageLayoutProps = {
+  title: string;
+  variant?: PageVariant;
+  children: React.ReactNode;
+};
+
+const variantClassName: Record<PageVariant, string> = {
+  default: 'gap-6 md:gap-8',
+  hero: 'gap-4 h-full items-end justify-end text-right',
+};
+
+export function PageLayout({ title, variant = 'default', children }: PageLayoutProps) {
+  return (
+    <section className={cn('flex flex-col', variantClassName[variant])}>
+      <h1 className="mb-0">{title}</h1>
+      <div className="space-y-8">{children}</div>
+    </section>
+  );
+}
