@@ -28,7 +28,7 @@ export function ProjectSidebar({
   }, [currentSlug]);
 
   return (
-    <aside className="flex flex-col md:h-full md:w-80 lg:w-96 2xl:w-115 md:shrink-0">
+    <aside className="flex flex-col md:h-full md:w-80 lg:w-96 2xl:w-120 md:shrink-0">
       <BackLink href="/projects">Back</BackLink>
       <nav className="hidden md:mt-6 md:block">
         <MaskedScrollArea
