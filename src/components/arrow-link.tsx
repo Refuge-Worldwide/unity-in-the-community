@@ -16,7 +16,7 @@ export function ArrowLink({ href, direction, children, transitionTypes }: ArrowL
     <Link
       href={href}
       transitionTypes={transitionTypes}
-      className="inline-flex w-fit items-center gap-2 font-medium"
+      className="type-link inline-flex w-fit items-center gap-2"
     >
       {direction === 'left' && icon}
       {children}

@@ -13,7 +13,7 @@ export default async function ProjectsPage() {
         {projects.map((project, index) => (
           <RevealItem
             key={project.slug}
-            className="self-start space-y-3 md:col-span-6 2xl:col-span-4"
+            className="self-start space-y-4 md:col-span-6 2xl:col-span-4"
           >
             <div className="md:hidden">
               <ProjectCardMobile project={project} alignRight={index % 2 === 1} />

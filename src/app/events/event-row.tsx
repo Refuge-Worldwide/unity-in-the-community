@@ -47,11 +47,11 @@ export function EventRow({ event }: { event: Event }) {
       className={`grid gap-3 border-t border-foreground py-4 md:grid-cols-[1fr_2fr] md:gap-12 md:py-7 ${hasDescription ? 'cursor-pointer md:cursor-auto' : ''}`}
     >
       <div className="flex flex-wrap items-baseline gap-x-4 md:flex-col md:items-stretch md:gap-x-0">
-        <h2>
+        <div className="md:type-h2">
           {singleDay
             ? formatShortDate(startDate)
             : `${formatShortDate(startDate)} – ${formatShortDate(endDate)}`}
-        </h2>
+        </div>
         <div className="flex flex-wrap items-baseline gap-x-3 text-md text-muted-foreground">
           <span className="hidden md:inline">
             {singleDay
