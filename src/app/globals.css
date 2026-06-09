@@ -84,7 +84,7 @@
 
 :root {
   --font-sans: 'Visuelt', sans-serif;
-  --font-heading: 'ABCArizonaFlare', serif;
+  --font-heading: 'RGGarath', serif;
   --header-height: 5.5rem;
   --footer-height: 6rem;
   --footer-height-nested: 3rem;
@@ -143,15 +143,15 @@
 }
 
 @utility type-h1 {
-  @apply font-heading font-bold text-3xl leading-tight md:text-4xl xl:text-5xl;
+  @apply font-heading font-medium text-3xl leading-tight md:text-4xl xl:text-5xl;
 }
 
 @utility type-h2 {
-  @apply font-heading font-bold text-xl leading-tight md:text-2xl xl:text-3xl;
+  @apply font-heading font-medium text-xl leading-tight md:text-2xl xl:text-3xl;
 }
 
 @utility type-h3 {
-  @apply font-heading text-[1.2rem] font-bold leading-tight md:text-2xl;
+  @apply font-heading font-medium text-[1.2rem] leading-tight md:text-2xl;
 }
 
 @utility type-link {
