@@ -25,7 +25,7 @@ export function ProjectCardMobile({
             alt={project.image.title ?? project.title}
             width={project.image.width}
             height={project.image.height}
-            className="h-auto w-full"
+            className="aspect-[3/2] w-full object-cover"
           />
         </RevealImage>
       )}
@@ -56,7 +56,7 @@ export function ProjectCardDesktopImage({ project }: { project: ProjectSummary }
             alt={project.image.title ?? project.title}
             width={project.image.width}
             height={project.image.height}
-            className="h-auto w-full"
+            className="aspect-[3/2] w-full object-cover"
           />
         </RevealImage>
       )}

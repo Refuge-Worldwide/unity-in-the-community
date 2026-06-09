@@ -40,7 +40,7 @@ export default async function NewsPage() {
         </Link>
         <RevealItem as="div" className="space-y-1 md:space-y-3">
           <p className="text-muted-foreground">{formatNewsDate(featured.date)}</p>
-          <h3 className="md:text-3xl">
+          <h3 className="md:type-h2">
             <Link href={`/news/${featured.slug}`} transitionTypes={['detail-open']}>
               {featured.title}
             </Link>

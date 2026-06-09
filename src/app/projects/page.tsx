@@ -2,14 +2,7 @@ import Link from 'next/link';
 import { PageLayout } from '@/components/page-layout';
 import { RevealContainer, RevealItem } from '@/components/scroll-reveal';
 import { getProjects } from '@/lib/contentful/content/projects';
-import type { ProjectPriority } from '@/lib/contentful/types';
 import { ProjectCardDesktopImage, ProjectCardMobile } from './project-card';
-
-const priorityClassMap: Record<ProjectPriority, string> = {
-  low: 'md:col-span-4',
-  medium: 'md:col-span-6',
-  high: 'md:col-span-8',
-};
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
@@ -20,13 +13,13 @@ export default async function ProjectsPage() {
         {projects.map((project, index) => (
           <RevealItem
             key={project.slug}
-            className={`self-start space-y-3 ${priorityClassMap[project.priority]}`}
+            className="self-start space-y-4 md:col-span-6 2xl:col-span-4"
           >
             <div className="md:hidden">
               <ProjectCardMobile project={project} alignRight={index % 2 === 1} />
             </div>
             <ProjectCardDesktopImage project={project} />
-            <div className="hidden md:block md:space-y-1">
+            <div className="hidden md:block md:space-y-0">
               {project.timeframe && (
                 <p className="tracking-wider text-muted-foreground">{project.timeframe}</p>
               )}
