@@ -1,93 +1,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLink } from '@/components/arrow-link';
 import { PageLayout } from '@/components/page-layout';
 import { RevealContainer, RevealImage, RevealItem } from '@/components/scroll-reveal';
 import { formatNewsDate, getNewsArticles } from '@/lib/contentful/content/news';
-
 export default async function NewsPage() {
   const newsItems = await getNewsArticles();
-  if (newsItems.length === 0) {
-    return (
-      <PageLayout title="News">
-        <p className="text-muted-foreground">No news articles yet.</p>
-      </PageLayout>
-    );
-  }
-
-  const [featured, ...rest] = newsItems;
 
   return (
     <PageLayout title="News">
-      <RevealContainer className="space-y-3 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
-        <Link
-          href={`/news/${featured.slug}`}
-          transitionTypes={['detail-open']}
-          className="relative block aspect-[16/10] overflow-hidden rounded-sm md:aspect-[4/3] md:rounded-md md:ring-1 md:ring-inset md:ring-border/60"
-        >
-          {featured.coverImage && (
-            <RevealImage className="absolute inset-0">
-              <Image
-                src={featured.coverImage.url}
-                alt={featured.coverImage.title ?? featured.title}
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 50vw, 100vw"
-              />
-            </RevealImage>
-          )}
-          <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)] md:block" />
-        </Link>
-        <RevealItem as="div" className="space-y-1 md:space-y-3">
-          <p className="text-muted-foreground">{formatNewsDate(featured.date)}</p>
-          <h3 className="md:type-h2">
-            <Link href={`/news/${featured.slug}`} transitionTypes={['detail-open']}>
-              {featured.title}
-            </Link>
-          </h3>
-          {featured.subtitle && <p>{featured.subtitle}</p>}
-          <div className="hidden md:block md:pt-4">
-            <ArrowLink
-              href={`/news/${featured.slug}`}
-              transitionTypes={['detail-open']}
-              direction="right"
-            >
-              Read more
-            </ArrowLink>
-          </div>
-        </RevealItem>
-      </RevealContainer>
-
-      <RevealContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {rest.map((item) => (
-          <RevealItem key={item.slug} className="space-y-3 md:space-y-4">
+      <RevealContainer className="[&>*:first-child_a]:pt-0">
+        {newsItems.map((item) => (
+          <RevealItem key={item.id}>
             <Link
               href={`/news/${item.slug}`}
               transitionTypes={['detail-open']}
-              className="relative block aspect-[16/10] overflow-hidden rounded-sm md:rounded-md md:ring-1 md:ring-inset md:ring-border/60"
+              className="flex flex-col gap-3 py-4 md:flex-row md:gap-8 md:py-6"
             >
               {item.coverImage && (
-                <RevealImage className="absolute inset-0">
-                  <Image
-                    src={item.coverImage.url}
-                    alt={item.coverImage.title ?? item.title}
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  />
-                </RevealImage>
+                <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-sm md:aspect-[4/3] md:w-72 md:rounded-md md:ring-1 md:ring-inset md:ring-border/60">
+                  <RevealImage className="absolute inset-0">
+                    <Image
+                      src={item.coverImage.url}
+                      alt={item.coverImage.title ?? item.title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 768px) 288px, 100vw"
+                    />
+                  </RevealImage>
+                </div>
               )}
-              <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_58%)] md:block" />
+              <div className="flex flex-col justify-start space-y-1">
+                <p className="text-muted-foreground">{formatNewsDate(item.date)}</p>
+                <h3>{item.title}</h3>
+                {item.subtitle && <p className="hidden md:block">{item.subtitle}</p>}
+              </div>
             </Link>
-            <div className="space-y-1">
-              <p className="text-muted-foreground">{formatNewsDate(item.date)}</p>
-              <h3>
-                <Link href={`/news/${item.slug}`} transitionTypes={['detail-open']}>
-                  {item.title}
-                </Link>
-              </h3>
-              {item.subtitle && <p>{item.subtitle}</p>}
-            </div>
           </RevealItem>
         ))}
       </RevealContainer>
