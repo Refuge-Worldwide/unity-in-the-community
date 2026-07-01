@@ -31,8 +31,8 @@ export default async function NewsPage() {
               )}
               <div className="flex flex-col justify-start space-y-1">
                 <p className="text-muted-foreground">{formatNewsDate(item.date)}</p>
-                <h3>{item.title}</h3>
-                {item.subtitle && <p className="hidden md:block">{item.subtitle}</p>}
+                <h2>{item.title}</h2>
+                {item.subtitle && <p className="hidden md:block mt-2">{item.subtitle}</p>}
               </div>
             </Link>
           </RevealItem>

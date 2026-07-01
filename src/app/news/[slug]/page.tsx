@@ -24,11 +24,13 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <div className="mt-auto space-y-1 pt-6 md:pt-8">
           {article.author && (
             <>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground">Written by</p>
+              <p className="text-sm md:text-lg uppercase tracking-wider text-muted-foreground">
+                Written by
+              </p>
               <p>{article.author}</p>
             </>
           )}
-          <p className="hidden pt-2 text-sm uppercase tracking-wider text-muted-foreground md:block">
+          <p className="hidden pt-2 text-sm md:text-lg uppercase tracking-wider text-muted-foreground md:block">
             Date
           </p>
           <p className="hidden md:block">{formatNewsDate(article.date)}</p>
