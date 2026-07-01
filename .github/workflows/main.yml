@@ -1,0 +1,27 @@
+name: Trigger deployment
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set git identity from secrets
+        run: |
+          git config user.name "Deployment Automation"
+          git config user.email "${{ secrets.VERCEL_DEPLOY_EMAIL_ADDRESS }}"
+
+      - name: Create empty commit
+        run: |
+          git commit --allow-empty -m "trigger deployment"
+
+      - name: Push
+        run: |
+          git push
