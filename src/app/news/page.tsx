@@ -2,9 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PageLayout } from '@/components/page-layout';
 import { RevealContainer, RevealImage, RevealItem } from '@/components/scroll-reveal';
-import { formatNewsDate, getNewsArticles } from '@/lib/contentful/content/news';
+import { formatNewsDate, getAllNewsArticles } from '@/lib/contentful/content/news';
+
 export default async function NewsPage() {
-  const newsItems = await getNewsArticles();
+  const newsItems = await getAllNewsArticles();
 
   return (
     <PageLayout title="News">

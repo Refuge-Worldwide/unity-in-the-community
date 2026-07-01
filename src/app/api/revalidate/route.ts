@@ -4,7 +4,7 @@ import { ABOUT_TAG } from '@/lib/contentful/content/about';
 import { EVENTS_TAG } from '@/lib/contentful/content/events';
 import { HOME_TAG } from '@/lib/contentful/content/home';
 import { IMPRINT_TAG } from '@/lib/contentful/content/imprint';
-import { NEWS_TAG } from '@/lib/contentful/content/news';
+import { RW_NEWS_TAG, UITC_NEWS_TAG } from '@/lib/contentful/content/news';
 import { PAGE_BACKGROUNDS_TAG } from '@/lib/contentful/content/page-backgrounds';
 import { PRIVACY_POLICY_TAG } from '@/lib/contentful/content/privacy-policy';
 import { PROJECTS_TAG } from '@/lib/contentful/content/projects';
@@ -13,7 +13,8 @@ import { SUPPORT_US_TAG } from '@/lib/contentful/content/support-us';
 const CONTENT_TYPE_TAGS: Record<string, string> = {
   event: EVENTS_TAG,
   project: PROJECTS_TAG,
-  newsArticle: NEWS_TAG,
+  newsArticle: UITC_NEWS_TAG,
+  article: RW_NEWS_TAG,
   pageAbout: ABOUT_TAG,
   pageSupportUs: SUPPORT_US_TAG,
   pageHome: HOME_TAG,
