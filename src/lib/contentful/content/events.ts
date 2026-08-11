@@ -7,6 +7,7 @@ export const EVENTS_TAG = 'events';
 
 type EventCollectionResponse = {
   eventCollection: {
+    total: number;
     items: Array<{
       sys: { id: string };
       title: string;
@@ -21,13 +22,20 @@ type EventCollectionResponse = {
   };
 };
 
+export const PAST_EVENTS_PAGE_SIZE = 10;
+
+export const UPCOMING_EVENTS_PAGE_SIZE = 10;
+
 const EVENTS_QUERY = /* GraphQL */ `
-  query Events($preview: Boolean, $from: DateTime!) {
+  query Events($preview: Boolean, $from: DateTime!, $limit: Int!, $skip: Int!) {
     eventCollection(
       preview: $preview
       where: { showOnUitcWebsite: true, date_gte: $from }
       order: date_ASC
+      limit: $limit
+      skip: $skip
     ) {
+      total
       items {
         sys {
           id
@@ -48,12 +56,15 @@ const EVENTS_QUERY = /* GraphQL */ `
 `;
 
 const PAST_EVENTS_QUERY = /* GraphQL */ `
-  query PastEvents($preview: Boolean, $before: DateTime!) {
+  query PastEvents($preview: Boolean, $before: DateTime!, $limit: Int!, $skip: Int!) {
     eventCollection(
       preview: $preview
       where: { showOnUitcWebsite: true, date_lt: $before }
       order: date_DESC
+      limit: $limit
+      skip: $skip
     ) {
+      total
       items {
         sys {
           id
@@ -92,22 +103,28 @@ function mapEvent(item: EventCollectionResponse['eventCollection']['items'][numb
   };
 }
 
-export async function getEvents(): Promise<Event[]> {
+export async function getEvents(skip = 0): Promise<{ events: Event[]; total: number }> {
   const data = await contentfulFetch<EventCollectionResponse>({
     query: EVENTS_QUERY,
-    variables: { from: startOfTodayISO() },
+    variables: { from: startOfTodayISO(), limit: UPCOMING_EVENTS_PAGE_SIZE, skip },
     space: eventsSpace,
     tags: [EVENTS_TAG],
   });
-  return data.eventCollection.items.map(mapEvent);
+  return {
+    events: data.eventCollection.items.map(mapEvent),
+    total: data.eventCollection.total,
+  };
 }
 
-export async function getPastEvents(): Promise<Event[]> {
+export async function getPastEvents(skip = 0): Promise<{ events: Event[]; total: number }> {
   const data = await contentfulFetch<EventCollectionResponse>({
     query: PAST_EVENTS_QUERY,
-    variables: { before: startOfTodayISO() },
+    variables: { before: startOfTodayISO(), limit: PAST_EVENTS_PAGE_SIZE, skip },
     space: eventsSpace,
     tags: [EVENTS_TAG],
   });
-  return data.eventCollection.items.map(mapEvent);
+  return {
+    events: data.eventCollection.items.map(mapEvent),
+    total: data.eventCollection.total,
+  };
 }

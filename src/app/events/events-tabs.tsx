@@ -4,9 +4,71 @@ import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RevealContainer, RevealItem } from '@/components/scroll-reveal';
 import { EventRow } from './event-row';
+import { ArrowButton } from '@/components/arrow-link';
+import { loadMorePastEvents, loadMoreUpcomingEvents } from './actions';
 import type { Event } from '@/lib/contentful/types';
 
-export function EventsTabs({ upcoming, past }: { upcoming: Event[]; past: Event[] }) {
+function EventList({
+  initialBatches,
+  total,
+  loadMore,
+}: {
+  initialBatches: Event[][];
+  total: number;
+  loadMore: (skip: number) => Promise<{ events: Event[]; total: number }>;
+}) {
+  const [batches, setBatches] = useState<Event[][]>(initialBatches);
+  const [isPending, setIsPending] = useState(false);
+
+  const loadedCount = batches.reduce((sum, b) => sum + b.length, 0);
+  const hasMore = loadedCount < total;
+
+  async function handleLoadMore() {
+    setIsPending(true);
+    try {
+      const { events } = await loadMore(loadedCount);
+      setBatches((prev) => [...prev, events]);
+    } finally {
+      setIsPending(false);
+    }
+  }
+
+  return (
+    <div>
+      {batches.map((batch, i) => (
+        <RevealContainer key={i} as="ul">
+          {batch.map((event) => (
+            <RevealItem key={event.id} as="li">
+              <EventRow event={event} />
+            </RevealItem>
+          ))}
+        </RevealContainer>
+      ))}
+      {hasMore && (
+        <ArrowButton
+          onClick={handleLoadMore}
+          disabled={isPending}
+          direction="down"
+          className="mt-8"
+        >
+          {isPending ? 'Loading…' : 'Show more events'}
+        </ArrowButton>
+      )}
+    </div>
+  );
+}
+
+export function EventsTabs({
+  upcoming,
+  upcomingTotal,
+  past,
+  pastTotal,
+}: {
+  upcoming: Event[];
+  upcomingTotal: number;
+  past: Event[];
+  pastTotal: number;
+}) {
   const [tab, setTab] = useState(upcoming.length === 0 ? 'past' : 'upcoming');
 
   return (
@@ -27,23 +89,15 @@ export function EventsTabs({ upcoming, past }: { upcoming: Event[]; past: Event[
             </button>
           </p>
         ) : (
-          <RevealContainer as="ul">
-            {upcoming.map((event) => (
-              <RevealItem key={event.id} as="li">
-                <EventRow event={event} />
-              </RevealItem>
-            ))}
-          </RevealContainer>
+          <EventList
+            initialBatches={[upcoming]}
+            total={upcomingTotal}
+            loadMore={loadMoreUpcomingEvents}
+          />
         )}
       </TabsContent>
       <TabsContent value="past">
-        <RevealContainer as="ul">
-          {past.map((event) => (
-            <RevealItem key={event.id} as="li">
-              <EventRow event={event} />
-            </RevealItem>
-          ))}
-        </RevealContainer>
+        <EventList initialBatches={[past]} total={pastTotal} loadMore={loadMorePastEvents} />
       </TabsContent>
     </Tabs>
   );
