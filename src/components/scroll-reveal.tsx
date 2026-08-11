@@ -1,13 +1,13 @@
 'use client';
 
 import { motion, type Variants } from 'motion/react';
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export const revealItemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.4, ease: EASE } },
 };
 
 export const revealImageVariants: Variants = {
@@ -28,11 +28,17 @@ export function RevealContainer({
   className,
   staggerSeconds = 0.05,
 }: RevealContainerProps) {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   const Component = as === 'ul' ? motion.ul : motion.div;
   return (
     <Component
       initial="hidden"
-      animate="visible"
+      animate={ready ? 'visible' : 'hidden'}
       variants={{ visible: { transition: { staggerChildren: staggerSeconds } } }}
       className={className}
     >
