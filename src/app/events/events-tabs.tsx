@@ -34,7 +34,7 @@ function EventList({
   }
 
   return (
-    <div>
+    <div className="[&>ul:first-child>li:first-child>div]:max-md:border-t-0">
       {batches.map((batch, i) => (
         <RevealContainer key={i} as="ul">
           {batch.map((event) => (
@@ -72,8 +72,8 @@ export function EventsTabs({
   const [tab, setTab] = useState(upcoming.length === 0 ? 'past' : 'upcoming');
 
   return (
-    <Tabs value={tab} onValueChange={setTab} className="gap-8 md:gap-12">
-      <TabsList>
+    <Tabs value={tab} onValueChange={setTab} className="gap-2 md:gap-12">
+      <TabsList className="w-full md:w-fit">
         <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
         <TabsTrigger value="past">Past</TabsTrigger>
       </TabsList>
