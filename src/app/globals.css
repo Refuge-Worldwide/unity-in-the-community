@@ -38,6 +38,10 @@
   font-style: normal;
 }
 
+@theme {
+  --breakpoint-3xl: 120rem;
+}
+
 @theme inline {
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
@@ -144,6 +148,12 @@
   }
 }
 
+@media (min-width: 120rem) {
+  html {
+    font-size: 112.5%;
+  }
+}
+
 @utility type-h1 {
   @apply font-heading font-medium text-3xl leading-tight md:text-4xl xl:text-5xl;
 }
@@ -239,7 +249,7 @@
   }
 
   .site-container {
-    @apply w-full px-3 md:px-6 xl:px-8;
+    @apply w-full px-3 md:px-6 xl:px-8 3xl:px-12;
   }
 
   .subtle-scrollbar {
