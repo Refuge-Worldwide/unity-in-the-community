@@ -40,7 +40,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <div className="invisible hidden md:block" aria-hidden inert>
           <BackLink href="/news">Back</BackLink>
         </div>
-        <div className="prose text-justify hyphens-auto md:border-l md:border-foreground md:pl-12">
+        <div className="prose text-justify hyphens-auto md:border-l md:border-foreground md:border-l-[var(--border-width)] md:pl-12">
           {article.subtitle && <div className="font-bold">{article.subtitle}</div>}
           {article.content && <RichText content={article.content} />}
         </div>

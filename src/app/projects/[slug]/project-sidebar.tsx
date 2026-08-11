@@ -43,7 +43,7 @@ export function ProjectSidebar({
                   key={item.slug}
                   ref={isCurrent ? currentRef : undefined}
                   className={cn(
-                    'border-l py-2 pl-4',
+                    'border-l border-l-[var(--border-width)] py-2 pl-4',
                     isCurrent ? 'border-foreground' : 'border-foreground/20'
                   )}
                 >

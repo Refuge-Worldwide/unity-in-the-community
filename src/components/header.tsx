@@ -48,7 +48,7 @@ type NavLinkProps = {
 };
 
 const navPillBase =
-  'type-link inline-flex items-center justify-center leading-none rounded-full border px-3 pt-1.5 pb-1 transition-all duration-200';
+  'type-link inline-flex items-center justify-center leading-none rounded-full border border-[length:var(--border-width)] px-3 pt-1.5 pb-1 transition-all duration-200';
 const navPillActive = 'border-accent bg-accent text-primary-foreground';
 const navPillInactive =
   'border-border bg-background text-foreground hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent active:border-accent active:text-accent';

@@ -85,6 +85,7 @@
 :root {
   --font-sans: 'Visuelt', sans-serif;
   --font-heading: 'RGGarath', serif;
+  --border-width: 1px;
   --header-height: 5.5rem;
   --footer-height: 6rem;
   --footer-height-nested: 3rem;
@@ -139,6 +140,7 @@
     --header-height: 7rem;
     --footer-height: 7rem;
     --footer-height-nested: 3.5rem;
+    --border-width: 1.5px;
   }
 }
 
