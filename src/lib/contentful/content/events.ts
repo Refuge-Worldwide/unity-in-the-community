@@ -18,6 +18,7 @@ type EventCollectionResponse = {
       description: { json: Document } | null;
       ticketLink: string | null;
       linkText: string | null;
+      article: { type: 'Article' | 'Workshop'; slug: string } | null;
     }>;
   };
 };
@@ -50,6 +51,16 @@ const EVENTS_QUERY = /* GraphQL */ `
         }
         ticketLink
         linkText
+        article {
+          ... on Article {
+            type: __typename
+            slug
+          }
+          ... on Workshop {
+            type: __typename
+            slug
+          }
+        }
       }
     }
   }
@@ -79,6 +90,16 @@ const PAST_EVENTS_QUERY = /* GraphQL */ `
         }
         ticketLink
         linkText
+        article {
+          ... on Article {
+            type: __typename
+            slug
+          }
+          ... on Workshop {
+            type: __typename
+            slug
+          }
+        }
       }
     }
   }
@@ -100,6 +121,7 @@ function mapEvent(item: EventCollectionResponse['eventCollection']['items'][numb
     description: item.description?.json ?? null,
     ticketLink: item.ticketLink,
     linkText: item.linkText,
+    article: item.article ?? null,
   };
 }
 

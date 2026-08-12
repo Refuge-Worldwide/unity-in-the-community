@@ -14,6 +14,11 @@ export type RichTextContent = {
   embeddedAssets: Record<string, EmbeddedAsset>;
 };
 
+export type EventArticle = {
+  type: 'Article' | 'Workshop';
+  slug: string;
+};
+
 export type Event = {
   id: string;
   title: string;
@@ -24,6 +29,7 @@ export type Event = {
   description: Document | null;
   ticketLink: string | null;
   linkText: string | null;
+  article: EventArticle | null;
 };
 
 export type ProjectPriority = 'low' | 'medium' | 'high';

@@ -19,12 +19,21 @@ function formatTime(date: Date): string {
   return date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
 }
 
+function eventLink(event: Event): string | null {
+  if (event.article?.type === 'Article')
+    return `https://refugeworldwide.com/news/${event.article.slug}`;
+  if (event.article?.type === 'Workshop')
+    return `https://refugeworldwide.com/workshops/${event.article.slug}`;
+  return event.ticketLink;
+}
+
 export function EventRow({ event }: { event: Event }) {
   const [expanded, setExpanded] = useState(false);
   const startDate = new Date(event.date);
   const endDate = event.endDate ? new Date(event.endDate) : startDate;
   const singleDay = isSameDay(startDate, endDate);
   const hasDescription = Boolean(event.description);
+  const link = eventLink(event);
 
   const handleRowClick = () => {
     if (!hasDescription) return;
@@ -86,9 +95,9 @@ export function EventRow({ event }: { event: Event }) {
             {event.description && <PlainRichText document={event.description} />}
             {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
           </div>
-          {event.ticketLink && (
+          {link && (
             <div className="mt-3">
-              <ArrowLink href={event.ticketLink} direction="right">
+              <ArrowLink href={link} direction="right">
                 {event.linkText ?? 'More info'}
               </ArrowLink>
             </div>
@@ -107,9 +116,9 @@ export function EventRow({ event }: { event: Event }) {
                 {event.description && <PlainRichText document={event.description} />}
                 {event.price && <p className="text-muted-foreground">Entry: {event.price}</p>}
               </div>
-              {event.ticketLink && (
+              {link && (
                 <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                  <ArrowLink href={event.ticketLink} direction="right">
+                  <ArrowLink href={link} direction="right">
                     {event.linkText ?? 'More info'}
                   </ArrowLink>
                 </div>
